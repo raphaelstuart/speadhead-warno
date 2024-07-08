@@ -1,7 +1,7 @@
 # speadhead-warno
 SpearHead mod for warno
 
-THE MOD IS NOT CAPABLE TO LATEST VERSION OF WARNO PLEASE UPDATE IT FIRST.
+THE MOD IS NOT CAPABLE WITH LATEST VERSION OF WARNO PLEASE UPDATE IT FIRST.
 
 ## Startup
 1. Copy and paste `.PATH.bat.template` and rename the new file to `.PATH.bat` 
@@ -20,7 +20,7 @@ THE MOD IS NOT CAPABLE TO LATEST VERSION OF WARNO PLEASE UPDATE IT FIRST.
 4. Edit the title and description in `Config.ini` or on steam workshop page.
 5. Upload mod using `UploadMod.bat`.
 
-## Reminder of file usages
+## Reminder Of File Usages
 > Inf model and weapon  
 GameData/Generated/Gameplay/Gfx/Infanterie/GeneratedDepictionInfantry.ndf  
 GameData/Generated/Gameplay/Gfx/Infanterie/GeneratedInfanterieWeaponsUnites.ndf  
