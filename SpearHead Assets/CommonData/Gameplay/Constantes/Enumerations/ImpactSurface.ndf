@@ -1,0 +1,13 @@
+// TImpactSurface : défini dans ProjectileManager.cpp
+template EImpactSurfaceMW [] is TBaseClass
+(
+    Ground          is 0
+    Water           is 1
+    Air             is 2
+    Wall            is 3
+    Vehicle         is 4
+    FlyingVehicle   is 5
+    Missile         is 6
+    Damages         is 7
+    Ricochet        is 8
+)

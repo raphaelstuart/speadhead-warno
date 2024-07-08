@@ -1,0 +1,260 @@
+{
+  "units":
+  [
+    {
+      "name": "(.*)BMP_1(.*)",
+      "speed":
+      {
+        "road": 65,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "(.*)BMP_2(.*)",
+      "speed":
+      {
+        "road": 65,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "(.*)BMP_3(.*)",
+      "speed": {
+        "road": 72,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "(.*)T80[_Obr1976|B|BV](.*)",
+      "speed":
+      {
+        "road": 70,
+        "off-road": 48
+      }
+    },
+    {
+      "name": "(.*)T80U(.*)",
+      "speed":
+      {
+        "road": 80,
+        "off-road": 55
+      }
+    },
+    {
+      "name": "(.*)T80UD(.*)",
+      "speed":
+      {
+        "road": 65,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "(.*)T64[A|B|BV](.*)",
+      "speed":
+      {
+        "road": 61,
+        "off-road": 40
+      }
+    },
+    {
+      "name": "(.*)BTR_50(.*)",
+      "speed":
+      {
+        "road": 45,
+        "off-road": 30
+      }
+    },
+    {
+      "name": "(.*)BTR_60(.*)",
+      "speed":
+      {
+        "road": 80,
+        "off-road": 48
+      }
+    },
+    {
+      "name": "(.*)BTR_70(.*)",
+      "speed":
+      {
+        "road": 80,
+        "off-road": 48
+      }
+    },
+    {
+      "name": "(.*)BTR_80(.*)",
+      "speed":
+      {
+        "road": 90,
+        "off-road": 54
+      }
+    },
+    {
+      "name": "(.*)BMD_1(.*)",
+      "speed":
+      {
+        "road": 80,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "(.*)BMD_2(.*)",
+      "speed":
+      {
+        "road": 80,
+        "off-road": 40
+      }
+    },
+    {
+      "name": "(.*)BRM_1(.*)",
+      "speed":
+      {
+        "road": 65,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "(.*)2K12_KUB(.*)",
+      "speed":
+      {
+        "road": 50,
+        "off-road": 30
+      }
+    },
+    {
+      "name": "(.*)2S1_[DDR|Gvozdika_SOV](.*)",
+      "speed":
+      {
+        "road": 50,
+        "off-road": 30
+      }
+    },
+    {
+      "name": "(.*)2S23_Nona_SVK(.*)",
+      "speed":
+      {
+        "road": 80,
+        "off-road": 30
+      }
+    },
+    {
+      "name": "(.*)2S3M(1)?_Akatsiya(.*)",
+      "speed":
+      {
+        "road": 63,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "Descriptor_Unit_2S3_DDR",
+      "speed":
+      {
+        "road": 63,
+        "off-road": 45
+      }
+    },
+    {
+      "name": "Descriptor_Unit_2S5_GiatsintS_SOV",
+      "speed":
+      {
+        "road": 62,
+        "off-road": 35
+      }
+    },
+    {
+      "name": "Descriptor_Unit_2S7M_Malka_SOV",
+      "speed":
+      {
+        "road": 50,
+        "off-road": 27
+      }
+    },
+    {
+      "name": "Descriptor_Unit_2S9_Nona_SOV",
+      "speed":
+      {
+        "road": 60,
+        "off-road": 37
+      }
+    },
+    {
+      "name": "(.*)BRDM(.*)",
+      "speed":
+      {
+        "road": 100,
+        "off-road": 60
+      }
+    },
+    {
+      "name": "(.*)AIFV_B(.*)",
+      "speed":
+      {
+        "road": 61,
+        "off-road": 33
+      }
+    },
+    {
+      "name": "(.*)AML_60(.*)",
+      "speed":
+      {
+        "road": 90,
+        "off-road": 55
+      }
+    },
+    {
+      "name": "(.*)AML_90(.*)",
+      "speed":
+      {
+        "road": 90,
+        "off-road": 55
+      }
+    },
+    {
+      "name": "(.*)AMX_10(.*)",
+      "speed":
+      {
+        "road": 85,
+        "off-road": 40
+      }
+    },
+    {
+      "name": "(.*)AMX_13(.*)",
+      "speed":
+      {
+        "road": 60,
+        "off-road": 32
+      }
+    },
+    {
+      "name": "(.*)AMX_30_AuF1(.*)",
+      "speed":
+      {
+        "road": 60,
+        "off-road": 35
+      }
+    },
+    {
+      "name": "(.*)AMX_30_B2_(.*)",
+      "speed":
+      {
+        "road": 65,
+        "off-road": 40
+      }
+    },
+    {
+      "name": "(.*)AMX_30_B_(.*)",
+      "speed":
+      {
+        "road": 65,
+        "off-road": 40
+      }
+    },
+    {
+      "name": "(.*)AMX_30_EBG(.*)",
+      "speed":
+      {
+        "road": 62,
+        "off-road": 38
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+// Enum TTrajectoryState
+ETrajectoryState is TBaseClass
+(
+    Undefined       is 0
+    Start           is 1
+    Flying          is 2
+    PropulsionOn    is 3
+    PropulsionOff   is 4
+    Explode         is 5
+)

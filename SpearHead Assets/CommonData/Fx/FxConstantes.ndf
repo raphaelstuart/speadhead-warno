@@ -1,0 +1,109 @@
+
+// à maintenir synchro avec Engine\Code\Eugen\CPP\EugGame\FeedbackRenderToolbox.h
+FeedbackEffectMode is TBaseClass
+(
+    //ne pas utiliser directement
+    private _BorderMask         is 1// 1<<0 // actif sur la bordure
+    private _FillMask           is 2// 1<<1 // actif sur l'intérieur
+    private _SolidMask          is 4// 1<<2 // par default (solide)
+    private _HalfTonedMask      is 8// 1<<3 // grille de pixels
+    private _PulseMask          is 16// 1<<4 // pulse curviligne
+    private _HatchedMask        is 32// 1<<5 // barré en diagonale
+    private _BlinkMask          is 64// 1<<6 // clignottement
+    private _DottedMask         is 128// 1<<7 // pointillé
+    private _CustomMask         is 1024// 1<<10 // custom shader
+    // Bordure + plein :
+    Solid               is _SolidMask|_BorderMask|_FillMask
+    HalfToned           is _HalfTonedMask|_BorderMask|_FillMask
+    Pulse               is _PulseMask|_BorderMask|_FillMask
+    Hatched             is _HatchedMask|_BorderMask|_FillMask
+    Blink               is _BlinkMask|_BorderMask|_FillMask
+    Dotted              is _DottedMask|_BorderMask|_FillMask
+    // Bordure uniquement :
+    SolidBorder         is _SolidMask|_BorderMask
+    HalfTonedBorder     is _HalfTonedMask|_BorderMask
+    PulseBorder         is _PulseMask|_BorderMask
+    HatchedBorder       is _HatchedMask|_BorderMask
+    BlinkBorder         is _BlinkMask|_BorderMask
+    DottedBorder        is _DottedMask|_BorderMask
+    // Plein uniquement :
+    SolidFill           is _SolidMask|_FillMask
+    HalfTonedFill       is _HalfTonedMask|_FillMask
+    PulseFill           is _PulseMask|_FillMask
+    HatchedFill         is _HatchedMask|_FillMask
+    BlinkFill           is _BlinkMask|_FillMask
+    DottedFill          is _DottedMask|_FillMask
+    // Shader custom
+    CustomShader        is _CustomMask|_BorderMask|_FillMask
+)
+
+
+FeedbackGeometryMode is TBaseClass
+(
+    None is 0
+
+    AdaptToWorldFloor is 1  //1<<0 // adapte la tesselation en z
+    Rounded           is 2  //1<<1 // smooth la forme avant la tesselation
+    Border            is 4  //1<<2 // dessine uniquement le bord
+    Fill              is 8  //1<<3 // rempli la forme
+    AlwaysOnTop       is 16 //1<<4 // toujours devant les autres objets
+    UseStencil        is 32 //1<<5 // pas de superposition de poly
+    MergeBorder       is 64 //1<<6 // les bordures sont rendues avant pour merger les polygones
+
+    AdaptToWorldFloor_AlwaysOnTop                       is AdaptToWorldFloor|AlwaysOnTop
+    AdaptToWorldFloor_Border                            is AdaptToWorldFloor|Border
+    AdaptToWorldFloor_Fill                              is AdaptToWorldFloor|Fill
+    AdaptToWorldFloor_Border_Fill                       is AdaptToWorldFloor|Border|Fill
+
+    AdaptToWorldFloor_Rounded_Border_Fill               is AdaptToWorldFloor|Rounded|Border|Fill
+    AdaptToWorldFloor_Rounded_Border                    is AdaptToWorldFloor|Rounded|Border
+    AdaptToWorldFloor_Rounded_Fill                      is AdaptToWorldFloor|Rounded|Fill
+
+    AdaptToWorldFloor_Border_AlwaysOnTop                is AdaptToWorldFloor_Border|AlwaysOnTop
+    AdaptToWorldFloor_Fill_AlwaysOnTop                  is AdaptToWorldFloor_Fill|AlwaysOnTop
+    AdaptToWorldFloor_Fill_UseStencil_AlwaysOnTop       is AdaptToWorldFloor_Fill|UseStencil|AlwaysOnTop
+    AdaptToWorldFloor_Border_Fill_AlwaysOnTop           is AdaptToWorldFloor_Border_Fill|AlwaysOnTop
+
+    AdaptToWorldFloor_Rounded_Border_Fill_AlwaysOnTop   is AdaptToWorldFloor_Rounded_Border_Fill|AlwaysOnTop
+    AdaptToWorldFloor_Rounded_Border_AlwaysOnTop        is AdaptToWorldFloor_Rounded_Border|AlwaysOnTop
+    AdaptToWorldFloor_Rounded_Fill_AlwaysOnTop          is AdaptToWorldFloor_Rounded_Fill|AlwaysOnTop
+
+    Border_Fill                                         is Border|Fill
+    Rounded_Border_Fill                                 is Rounded|Border|Fill
+    Rounded_Border                                      is Rounded|Border
+    Rounded_Fill                                        is Rounded|Fill
+
+    Border_AlwaysOnTop                                  is Border|AlwaysOnTop
+    Fill_AlwaysOnTop                                    is Fill|AlwaysOnTop
+    Border_Fill_AlwaysOnTop                             is Border_Fill|AlwaysOnTop
+
+    Border_Fill_AlwaysOnTop_MergeBorder                 is Border_Fill|AlwaysOnTop|MergeBorder
+    Border_Fill_MergeBorder                             is Border_Fill|MergeBorder
+
+    Rounded_Border_Fill_AlwaysOnTop                     is Rounded_Border_Fill|AlwaysOnTop
+    Rounded_Border_AlwaysOnTop                          is Rounded_Border|AlwaysOnTop
+    Rounded_Fill_AlwaysOnTop                            is Rounded_Fill|AlwaysOnTop
+
+    Default is Border
+)
+
+
+FeedbackTextStyle is TBaseClass
+(
+    AlignLeft             is 1 //1<<0
+    AlignRight            is 2 //1<<1
+    AlignTop              is 4 //1<<2
+    AlignBottom           is 8 //1<<3
+    AlignHorizontalCenter is AlignLeft | AlignRight
+    AlignVerticalCenter   is AlignTop | AlignBottom
+    AlignCenter           is AlignHorizontalCenter | AlignVerticalCenter
+    AlignTopCenter        is AlignHorizontalCenter | AlignTop
+    AlignBottomCenter     is AlignHorizontalCenter | AlignBottom
+    AlignLeftCenter       is AlignVerticalCenter | AlignLeft
+    AlignRightCenter      is AlignVerticalCenter | AlignRight
+    AlignTopLeft          is AlignTop | AlignLeft
+    AlignTopRight         is AlignTop | AlignRight
+    AlignBottomLeft       is AlignBottom | AlignLeft
+    AlignBottomRight      is AlignBottom | AlignRight
+    AlignDefault          is AlignLeft | AlignTop
+)

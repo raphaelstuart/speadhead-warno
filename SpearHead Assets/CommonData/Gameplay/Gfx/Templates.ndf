@@ -1,0 +1,478 @@
+AnimationDefaultSlot is 0
+InfantryAnimationTopSlot is 1
+InfantryAnimationBottomSlot is 0
+InfantryAnimationAllSlots is [InfantryAnimationTopSlot, InfantryAnimationBottomSlot]
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+template TGfxDescriptorAnimationWithUsefulnessMask
+[
+    Mask = nil,
+    FileName     = "",
+    CivMask      = CivMask/Common,
+    TypeMask     = TypeMask/Common,
+    PlayInLoop : bool = false,
+    ForceDuree : float = 0,
+    IsEventAnimation = false,
+    StartDelay  = 0,
+] is TGfxDescriptorAnimation
+(
+    FileName       = <FileName>
+    UsefulnessMask = <CivMask> + <TypeMask>
+    PlayInLoop     = <PlayInLoop>
+    ForceDuration  = <ForceDuree>
+    Mask           = <Mask>
+    IsEventAnimation = <IsEventAnimation>
+    StartDelay     = <StartDelay>
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+public Template TemplateFxWithScaling
+[
+    Fx : TActionDescriptor,
+    Params : Map<string, TEvaluable> = MAP[],
+    MaxDuration : single = 0
+] is TSimultaneousAction
+(
+    Actions = [TActionCall(Action = <Fx> NamedParams = <Params>)]
+    Mobile = nil // TMobileFactory_UnCentroid()
+    MaxDuration = <MaxDuration>
+)
+
+public Template TemplateFxWithScalingOffsetZPlus200
+[
+    Fx : TActionDescriptor,
+    Params : Map<string, TEvaluable> = MAP[],
+    MaxDuration : single = 0
+] is TSimultaneousAction
+(
+    Actions = [TActionCall(Action = <Fx> NamedParams = <Params>)]
+    Mobile = TMobileWithLocalRepereMatrixFactory(Position = float3[0,0,250])
+    MaxDuration = <MaxDuration>
+)
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+template AnimationMask_Top[] is THierarchicalASEModelSkeletonMask
+(
+    MaskUnionCode = 255 * 256 // equivalent a 0xff00 (0xff decale de (2^8 == 256) => 8 bits)
+    AnimationSlot = InfantryAnimationTopSlot
+    Weights = MAP
+    [
+        // base de la hierarchie
+        //('BoxPivot', 0.0),
+
+        ('Bip01', 0.0),
+        ('Bip01 Pelvis', 1.0),
+        ('Bip01 Spine', 1.0),
+        ('Bip01 Spine1', 1.0),
+        ('Bip01 Xtra01', 0.5), // gourde
+
+        // haut du corps
+        ('Bip01 Neck', 1.0),
+        ('Bip01 Head', 1.0),
+        ('Bip01 L Clavicle', 1.0),
+        ('Bip01 R Clavicle', 1.0),
+        ('Bip01 L UpperArm', 1.0),
+        ('Bip01 R UpperArm', 1.0),
+        ('Bip01 L Forearm', 1.0),
+        ('Bip01 R Forearm', 1.0),
+        ('Bip01 L Hand', 1.0),
+        ('Bip01 R Hand', 1.0),
+        ('Bip01 L Finger0', 1.0),
+        ('Bip01 L Finger1', 1.0),
+        ('Bip01 L Finger2', 1.0),
+        ('Bip01 R Finger0', 1.0),
+        ('Bip01 R Finger1', 1.0),
+        ('Bip01 R Finger2', 1.0),
+        ('Arme_1', 1.0),
+        ('Arme_2', 1.0),
+        ('Bip01 L Finger01', 1.0),
+        ('Bip01 L Finger11', 1.0),
+        ('Bip01 L Finger21', 1.0),
+        ('Bip01 R Finger01', 1.0),
+        ('Bip01 R Finger11', 1.0),
+        ('Bip01 R Finger21', 1.0),
+        ('FX_Tir_01', 1.0),
+        ('FX_Tir_02', 1.0),
+    ]
+)
+
+
+template AnimationMask_Bottom[] is THierarchicalASEModelSkeletonMask
+(
+    MaskUnionCode = 255 // equivalent a 0x00ff
+    AnimationSlot = InfantryAnimationBottomSlot
+
+    Weights = MAP
+    [
+        // base de la hierarchie
+        // ('BoxPivot', 1.0),
+        // base de la hierarchie
+        ('Bip01', 1),
+        ('Bip01 Pelvis', 0.0),
+        ('Bip01 Spine', 0.0),
+        ('Bip01 Spine1', 0.0),
+        ('Bip01 Xtra01', 0.5), // gourde
+
+        // bas du corps
+        ('Bip01 Footsteps', 1.0),
+        ('Bip01 L Thigh', 1.0),
+        ('Bip01 R Thigh', 1.0),
+        ('Bip01 L Calf', 1.0),
+        ('Bip01 R Calf', 1.0),
+        ('Bip01 L Foot', 1.0),
+        ('Bip01 R Foot', 1.0),
+        ('Bip01 L Toe0', 1.0),
+        ('Bip01 R Toe0', 1.0),
+    ]
+)
+
+
+export Template TemplateAnimationTopNoPath
+[
+    Animation   : string,
+    Loop        = true,
+    Duree       = 0,
+    Mask = AnimationMask_Top(),
+    EventAnimation = false,
+    StartDelay  = 0,
+]
+is TGfxDescriptorAnimationWithUsefulnessMask
+(
+    FileName    = <Animation>
+    PlayInLoop  = <Loop>
+    Mask        = <Mask>
+    ForceDuree  = <Duree>
+    IsEventAnimation = <EventAnimation>
+    StartDelay  = <StartDelay>
+)
+
+export Template TemplateAnimationBottomNoPath
+[
+    Animation   : string,
+    Loop        = true,
+    Duree       = 0,
+    Mask = AnimationMask_Bottom(),
+    EventAnimation = false,
+    StartDelay  = 0,
+]
+is TGfxDescriptorAnimationWithUsefulnessMask
+(
+    FileName    = <Animation>
+    PlayInLoop  = <Loop>
+    Mask        = <Mask>
+    ForceDuree  = <Duree>
+    IsEventAnimation = <EventAnimation>
+    StartDelay  = <StartDelay>
+)
+
+private AnimationPath is 'GameData:Assets\3D\Units\Common\'
+
+export Template TemplateAnimationTop
+[
+    Animation   : string,
+    Loop        = true,
+    Duree       = 0,
+    EventAnimation = false,
+    StartDelay  = 0,
+]
+is TemplateAnimationTopNoPath
+(
+    Animation   = AnimationPath + <Animation>
+    Loop        = <Loop>
+    Duree       = <Duree>
+    EventAnimation = <EventAnimation>
+    StartDelay  = <StartDelay>
+)
+
+export Template TemplateAnimationBottom
+[
+    Animation   : string,
+    Loop        = true,
+    Duree       = 0,
+    EventAnimation = false,
+    StartDelay  = 0,
+]
+is TemplateAnimationBottomNoPath
+(
+    Animation   = AnimationPath + <Animation>
+    Loop        = <Loop>
+    Duree       = <Duree>
+    EventAnimation = <EventAnimation>
+    StartDelay  = <StartDelay>
+)
+
+PI is 3.1415927
+DEGTORAD is 0.01745329251994329576923690768489
+
+export Template IKJoint
+[
+    NodeName : string,
+    XLimits = [-180,180],
+    YLimits = [-180,180],
+    ZLimits = [-180,180],
+] is TCosmeticIkJoint
+(
+
+    NodeName = <NodeName>
+    XLimits = [<XLimits>[0] * DEGTORAD, <XLimits>[1] * DEGTORAD]
+    YLimits = [<YLimits>[0] * DEGTORAD, <YLimits>[1] * DEGTORAD]
+    ZLimits = [<ZLimits>[0] * DEGTORAD, <ZLimits>[1] * DEGTORAD]
+)
+
+//Animation
+AnimationStateAll                 is 0x00000000
+AnimationStateMoving              is 0x00000001
+AnimationStateConstruction        is 0x00000002
+AnimationStateRepairing           is 0x00000004
+AnimationStateTransferResource    is 0x00000008
+AnimationStateAttacking           is 0x00000010
+AnimationStateDestruction         is 0x00000020
+AnimationStateEngineOff           is 0x00000040
+AnimationStateEngineStarting      is 0x00000080
+AnimationStateEngineRunning       is 0x00000100
+AnimationStateEngineStopping      is 0x00000200
+AnimationStateEngineStartTurning  is 0x00000400
+AnimationStateEngineTurning       is 0x00000800
+AnimationStateEngineStopTurning   is 0x00001000
+AnimationStateLeft                is 0x00002000
+AnimationStateRight               is 0x00004000
+AnimationStateBack                is 0x00008000
+AnimationStateInstantFire         is 0x00010000
+AnimationStateContinuousFire      is 0x00020000
+AnimationStateSurrender           is 0x00040000
+
+
+template AnimationMask_All[] is THierarchicalASEModelSkeletonMask
+(
+    MaskUnionCode = 65536 // equivalent a 0xffff
+    AnimationSlot = AnimationDefaultSlot
+    DefaultWeight = 1
+    Weights = MAP[]
+)
+
+export Template TemplateAnimationNoPath
+[
+    Animation   : string,
+    Loop        = true,
+    Duree       = 0,
+    Mask = nil,
+    EventAnimation = false,
+    StartDelay = 0
+]
+is TGfxDescriptorAnimationWithUsefulnessMask
+(
+    FileName    = <Animation>
+    PlayInLoop  = <Loop>
+    Mask        = <Mask>
+    ForceDuree  = <Duree>
+    IsEventAnimation = <EventAnimation>
+    StartDelay  = <StartDelay>
+)
+
+export Template TemplateAnimation
+[
+    Animation   : string,
+    Loop        = true,
+    Duree       = 0,
+    StartDelay  = 0,
+    EventAnimation = false,
+    AnimationPath = '',
+    Mask        = nil
+]
+is TemplateAnimationNoPath
+(
+    Animation   = <AnimationPath> + <Animation>
+    Loop        = <Loop>
+    Duree       = <Duree>
+    StartDelay  = <StartDelay>
+    EventAnimation = <EventAnimation>
+    Mask = <Mask>
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+public Template TemplateGfxDescriptorBatimentWithLevelDesignPattern_OnlyLevelBuild
+[
+    SceneryDescriptorName,
+    SousElementsModeleZoom4= MAP[],
+    LevelBuildDescriptor,
+] is TGfxDescriptorModifyLevelBuild
+(
+        InvisibleAtStart = false
+        LevelBuildStateGeoDatabaseModification = TGfxLevelBuildStateGeoDatabaseModification
+        (
+            Undoable = true
+
+            LevelBuildStateGeoDatabaseProxy = $/M3D/Scene/LevelBuildStateGeoDatabaseProxy
+            SymbolName = <SceneryDescriptorName>
+            LevelBuildSymbolDatabaseProxy = $/M3D/Scene/LevelBuildSymbolDatabaseProxy
+            Mode = SDMode_StateDB
+            LevelBuildHierarchyTag = LevelBuildHierarchyTag/BaseBuildingOnly
+        )
+
+        LevelBuildGeoDatabaseModification = TGfxLevelBuildGeoDatabaseModification
+        (
+            SymbolName = <SceneryDescriptorName>
+            Descriptor = <LevelBuildDescriptor>
+            DefaultMultiRenderTypeMaterialPack = $/M3D/Shader/MultiRenderTypeMaterialPack_Depiction
+        )
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+public Template TemplateTimelyDescriptorBatimentWithLevelDesignPattern_OnlyLevelBuild_Base
+[
+    SceneryDescriptorName,
+    SousElementsModeleZoom4= MAP[],
+    LevelBuildDescriptor,
+    RenderStyleProviderDescriptor,
+    StorageVisualizationManager = nil,
+    ModifyLevelBuild = true,
+] is TTimelyModifyLBReceiverFactory
+(
+    LevelBuildStateGeoDatabaseModification = <ModifyLevelBuild> ? TGfxLevelBuildStateGeoDatabaseModification
+    (
+        Undoable = true
+
+        LevelBuildStateGeoDatabaseProxy = $/M3D/Scene/LevelBuildStateGeoDatabaseProxy
+        SymbolName = <SceneryDescriptorName>
+        LevelBuildSymbolDatabaseProxy = $/M3D/Scene/LevelBuildSymbolDatabaseProxy
+        Mode = SDMode_StateDB
+        LevelBuildHierarchyTag = LevelBuildHierarchyTag/BaseBuildingOnly
+    ) : nil
+
+    LevelBuildGeoDatabaseModification = TGfxLevelBuildGeoDatabaseModification
+    (
+        SymbolName = <SceneryDescriptorName>
+        Descriptor = <LevelBuildDescriptor>
+    )
+
+    RenderStyleProviderDescriptor = <RenderStyleProviderDescriptor>
+    StorageVisualizationManager = <StorageVisualizationManager>
+)
+
+public Template TemplateTimelyDescriptorBatimentWithLevelDesignPattern_OnlyLevelBuild
+[
+    SceneryDescriptorName,
+    SousElementsModeleZoom4 = MAP[],
+    LevelBuildDescriptor,
+    RenderStyleProviderDescriptor,
+    StorageVisualizationManager = nil,
+] is TemplateTimelyDescriptorBatimentWithLevelDesignPattern_OnlyLevelBuild_Base
+(
+    SceneryDescriptorName = <SceneryDescriptorName>
+    SousElementsModeleZoom4 = <SousElementsModeleZoom4>
+    LevelBuildDescriptor = <LevelBuildDescriptor>
+    RenderStyleProviderDescriptor = <RenderStyleProviderDescriptor>
+    StorageVisualizationManager = <StorageVisualizationManager>
+)
+
+public Template TemplateTimelyDescriptorBatimentUnderConstructionWithLevelDesignPattern_OnlyLevelBuild
+[
+    SceneryDescriptorName,
+    SousElementsModeleZoom4 = MAP[],
+    LevelBuildDescriptor,
+    RenderStyleProviderDescriptor,
+    StorageVisualizationManager = nil,
+    ModifyLevelBuild = true,
+] is TemplateTimelyDescriptorBatimentWithLevelDesignPattern_OnlyLevelBuild_Base
+(
+    SceneryDescriptorName = <SceneryDescriptorName>
+    SousElementsModeleZoom4 = <SousElementsModeleZoom4>
+    LevelBuildDescriptor = <LevelBuildDescriptor>
+    RenderStyleProviderDescriptor = <RenderStyleProviderDescriptor>
+    StorageVisualizationManager = <StorageVisualizationManager>
+    ModifyLevelBuild = <ModifyLevelBuild>
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+public Template TemplateGfxDescriptorGhostBatimentWithLevelDesignPattern_OnlyLevelBuild
+[
+    SceneryDescriptorName,
+    LevelBuildDescriptor,
+] is TGfxDescriptorModifyLevelBuild
+(
+        InvisibleAtStart = false
+        LevelBuildStateGeoDatabaseModification = Nil
+        LevelBuildGeoDatabaseModification = TGfxLevelBuildGeoDatabaseModification
+        (
+            SymbolName = <SceneryDescriptorName>
+            Descriptor = <LevelBuildDescriptor>
+            DefaultMultiRenderTypeMaterialPack = $/M3D/Shader/MultiRenderTypeMaterialPack_Depiction
+        )
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+public Template TemplateSimpleGfxDescriptorTexte
+[
+    VisibilityRange : TVisibilityRange,
+    Color           : color,
+    FontSize        : unsigned,
+    Decalage2D      : float3 = [0, 0, 0],
+    Decalage3D      : float3 = [0, 0, 0],
+] is TGfxDescriptorTexte
+(
+    VisibilityRange   = <VisibilityRange>
+    Color             = <Color>
+    FontSize          = <FontSize>
+    Decalage2D        = <Decalage2D>
+    Decalage3D        = <Decalage3D>
+
+    Camera            = $/M3D/Camera/CameraPrincipale
+    Calque            = $/M3D/Scene/Scene_2D_Interface/Calque_Interface_Text
+    MeshMaterial      = $/M3D/Shader/MaterialText_Stroke
+    FreeTypeGenerator = $/M3D/Fonts/DebugFont
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+// première implémentation statique
+template TResourceMultiMaterialMeshWithLod
+         [
+         FileName     = "",
+         FileNameLod  = "",
+         CivMask      = 0,
+         TypeMask     = 0
+         ] is TResourceMultiMaterialMesh
+(
+    FileName = UseModelsHighForUnits ? <FileName>  : ( <FileNameLod> == "" ? <FileName> : <FileNameLod> )
+    UsefulnessMask = <CivMask> + <TypeMask>
+)
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+template TemplateMeshDescriptor_Canon
+[
+    ModelFile
+]
+is TResourceMultiMaterialMeshWithLod
+(
+    FileName = <ModelFile>
+    CivMask = CivMask/Nationalite1
+    TypeMask = TypeMask/Canon
+)
+
+template TemplateMeshDescriptor_Servant
+[
+    ModelFile
+]
+is TResourceMultiMaterialMeshWithLod
+(
+    FileName = <ModelFile>
+    CivMask = CivMask/Nationalite1
+    TypeMask = TypeMask/Infanterie
+)

@@ -1,0 +1,13 @@
+//-----------------------------------------------------------------------------
+// Differents settings de macro actions
+//-----------------------------------------------------------------------------
+//Correspondance : EnumMacroActionSettingsType.h
+template EMacroActionSettingsTypeCommon [] is TBaseClass
+(
+    Transport          is 0
+    Airstrike          is 1
+    ResourceProduction is 2
+    Support            is 3
+    ArtilleryStrike    is 4
+    Blitzkrieg         is 5
+)

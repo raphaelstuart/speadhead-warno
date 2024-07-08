@@ -1,0 +1,7 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+banner.jpg filter=lfs diff=lfs merge=lfs -text
+base.zip filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+GameData/Generated/Gameplay/Gfx/UniteDescriptor.ndf filter=lfs diff=lfs merge=lfs -text
+SpearHead[[:space:]]Assets/CommonData/Gameplay/Gfx/UniteDescriptor.ndf filter=lfs diff=lfs merge=lfs -text
+SpearHead[[:space:]]Assets/GameData/Generated/Gameplay/Gfx/UniteDescriptor.ndf filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,230 @@
+
+#ifdef EUG_PC
+#ifndef EUG_POSIX
+#define HAS_MULTITOUCH_SUPPORT
+#endif
+#endif
+
+{
+// ne pas enlever ce commentaire
+Liste des noms de bouton et axe défini dans CommonData:System/Globals.ndf :
+ButtonA
+ButtonB
+ButtonX
+ButtonY
+ButtonBumperRight
+ButtonBumperLeft
+ButtonStickLeft
+ButtonStickRight
+ButtonUp
+ButtonRight
+ButtonDown
+ButtonLeft
+ButtonStart
+ButtonBack
+
+AxeHStickLeft
+AxeVStickLeft
+AxeHStickRight
+AxeVStickRight
+AxeTriggerRight
+AxeTriggerLeft
+
+_ButtonNotDefined
+_AxeNotDefined
+// ne pas enlever ce commentaire
+}
+
+
+
+//*****************************************************************************
+// Mechant copier-coller de visualdebuginfohandler.ndf, mais je ne sais pas vraiment comment ça marche, alors je fais ce que je peux.
+template Template_RenderParameterBlended
+[
+    Name = "blend",
+    MeshMaterialFill2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend2D,
+    MeshMaterialBorder2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend2D,
+    MeshMaterialFill3D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend,
+    MeshMaterialBorder3D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend,
+    CalqueLine2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Line,
+    CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill,
+    CalqueLine3D = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Line,
+    CalqueFill3D = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Fill,
+    SortTriangles2D = false,
+    SortTriangles3D = true
+]
+is TRenderTypeParameters
+(
+    Name = <Name>
+    MeshMaterialFill2D = <MeshMaterialFill2D>
+    MeshMaterialBorder2D = <MeshMaterialBorder2D>
+    MeshMaterialFill3D = <MeshMaterialFill3D>
+    MeshMaterialBorder3D = <MeshMaterialBorder3D>
+    CalqueLine2D = <CalqueLine2D>
+    CalqueFill2D = <CalqueFill2D>
+    CalqueLine3D = <CalqueLine3D>
+    CalqueFill3D = <CalqueFill3D>
+    SortTriangles2D = <SortTriangles2D>
+    SortTriangles3D = <SortTriangles3D>
+)
+
+template Template_RenderParameterAdditive
+[
+    Name = "additive",
+    MeshMaterialFill2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Additive2D,
+    MeshMaterialBorder2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Additive2D,
+    MeshMaterialFill3D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Additive,
+    MeshMaterialBorder3D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Additive,
+    CalqueLine2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Line,
+    CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill,
+    CalqueLine3D = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Line,
+    CalqueFill3D = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Fill,
+    SortTriangles2D = false,
+    SortTriangles3D = false
+]
+is TRenderTypeParameters
+(
+    Name = <Name>
+    MeshMaterialFill2D = <MeshMaterialFill2D>
+    MeshMaterialBorder2D = <MeshMaterialBorder2D>
+    MeshMaterialFill3D = <MeshMaterialFill3D>
+    MeshMaterialBorder3D = <MeshMaterialBorder3D>
+    CalqueLine2D = <CalqueLine2D>
+    CalqueFill2D = <CalqueFill2D>
+    CalqueLine3D = <CalqueLine3D>
+    CalqueFill3D = <CalqueFill3D>
+    SortTriangles2D = <SortTriangles2D>
+    SortTriangles3D = <SortTriangles3D>
+)
+
+template Template_RenderParameterZBuffered
+[
+    Name = "Zbuffered",
+    MeshMaterialFill3D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_ZBuffer,
+    MeshMaterialBorder3D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_ZBuffer,
+    CalqueLine2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Line,
+    CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill,
+    CalqueLine3D = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Line,
+    CalqueFill3D = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Fill,
+    SortTriangles3D = true
+]
+is TRenderTypeParameters
+(
+    Name = <Name>
+    MeshMaterialFill3D = <MeshMaterialFill3D>
+    MeshMaterialBorder3D = <MeshMaterialBorder3D>
+    CalqueLine3D = <CalqueLine3D>
+    CalqueFill3D = <CalqueFill3D>
+    SortTriangles3D = <SortTriangles3D>
+)
+
+template Template_TextRenderParameter // standard
+[
+    Name = "std",
+    MeshMaterial = $/M3D/Shader/MaterialText_Std,
+    Calque = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Line, // pas bien, mais on n'est pas sensé l'utiliser...
+    FreeTypeGenerator = $/M3D/Fonts/DebugFont
+]
+is TTextRenderTypeParameters
+(
+    Name = <Name>
+    MeshMaterial = <MeshMaterial>
+    Calque = <Calque>
+    FreeTypeGenerator = <FreeTypeGenerator>
+)
+//*****************************************************************************
+export SelectionRenderToolBox is TDynamicRenderToolBox
+(
+    MainCamera = $/M3D/Camera/CameraPrincipale
+    Scene2D   = $/M3D/Scene/Scene_2D_Interface
+    World3D   = $/M3D/Scene/DefaultWorld
+    CalqueText   = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Line
+    CalqueText3D   = $/M3D/Scene/Scene3D_AfterPostProcess/debugInfo/Render/Calque_DebugInfo_Text3D
+    FreeTypeGenerator = $/M3D/Fonts/MainFont
+    MeshMaterialText   = $/M3D/Shader/MaterialText_Std
+    MeshMaterialText3D = $/M3D/Shader/MaterialText_Text3D
+
+    RenderParameters =
+    [
+        Template_RenderParameterBlended(), // 0
+        Template_RenderParameterAdditive(), // 1
+        Template_RenderParameterZBuffered(), // 2 : VINCENT: l'ordre est très important !
+        Template_RenderParameterBlended(), // deprecated
+        Template_RenderParameterBlended(), // deprecated
+        Template_RenderParameterBlended // Button Standard
+        (
+            MeshMaterialFill2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend2D_ButtonStandard
+            CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill
+        ),
+        Template_RenderParameterBlended // Button Hovered
+        (
+            MeshMaterialFill2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend2D_ButtonHovered
+            CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill
+        ),
+        Template_RenderParameterBlended // Button Pressed
+        (
+            MeshMaterialFill2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend2D_ButtonPressed
+            CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill
+        ),
+        Template_RenderParameterBlended // Button Disabled
+        (
+            MeshMaterialFill2D = $/M3D/Shader/MeshMaterialVisualDebugInfoHandler_Blend2D_ButtonDisabled
+            CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill
+        ),
+        Template_RenderParameterBlended // 9 : Ellipse de selection
+        (
+            MeshMaterialFill2D = $/M3D/Shader/MeshMaterial_EllipseSelection
+            CalqueFill2D = $/M3D/Scene/Scene_2D_Interface/Calque_Selection_Fill
+        ),
+    ]
+
+    TextRenderParameters = // Doit rester dans cet ordre
+    [
+        Template_TextRenderParameter // Default
+        (
+            Name = "default"
+            MeshMaterial = $/M3D/Shader/MaterialText_Stroke
+        ),
+        Template_TextRenderParameter(), // Std
+        Template_TextRenderParameter // Stroke
+        (
+            Name = "stroke"
+            MeshMaterial = $/M3D/Shader/MaterialText_Stroke
+        ),
+        Template_TextRenderParameter // Shadow
+        (
+            Name = "shadow"
+            MeshMaterial = $/M3D/Shader/MaterialText_Shadow
+        ),
+    ]
+)
+
+//**********************************************************
+private MouseSelectionHandlerInGame is TMouseSelectionHandlerInGame
+(
+    PixelTolerancePourSelection = 10 //2.5 // CYRILT : j'ai passer la valeur a 10 pour eviter les rectangles qui se font passer pour des clicks
+
+    MinRayonSelectionDoubleClic = 104000 // Rayon min
+    MaxRayonSelectionDoubleClic = 312000 // Rayon max
+    PositionZCameraMinRayonSelectionDoubleClic = 0      // Position Z de la caméra pour laquelle le rayon est min
+    PositionZCameraMaxRayonSelectionDoubleClic = 350000 // Position Z de la caméra pour laquelle la rayon est max
+)
+
+#ifdef HAS_MULTITOUCH_SUPPORT
+private TouchScreenSelectionHandlerInGame is TTouchScreenSelectionHandlerInGame
+(
+    //TimeEpsilon = 0.4
+    //TimeEpsilonForDoubleClic = 0.5
+    //TimeForHold = 0.5
+    //MaxMoveForDoubleClic = 20
+
+    //MinMoveDistanceForGesture = 15
+    //DeviationThresholdForGesture = 15
+    //MinSpeedForGesture = 75 // en px/s
+
+    //TouchRadiusForSelection = 10
+    //HoldEllipseSize = [100, 75]
+    //HoldEllipseInDuration = 0.4
+    //HoldEllipseOutDuration = 0.2
+)
+#endif

@@ -1,0 +1,8 @@
+//Faux enum, correspond a des u32 en cpp
+EAlliance is TBaseClass
+(
+    _0 is 0
+    _1 is 1
+    _2 is 2
+    _3 is 3
+)

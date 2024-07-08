@@ -1,0 +1,224 @@
+"TOKEN";"COMMENT";"DO NOT TRANSLATE";CONSTRAINT;"REFTEXT";"CLASSEMENT";"ExisteDansSlayer"
+;;;;///UNITS
+"BM21CLU";;;;"BM-21 GRAD [CLU]";;
+"9M218";;;;"9M218 Cluster";;
+"M864";;;;M185 (M864 DPICM);;
+"M109CLU";;;;"M109A2 [CLU]";;
+"M712";;;;"M185 (M712 Copperhead)";;
+"M982";;;;"M185 (M982 Excalibur)";;
+"2A37";;;;2A37;;
+"3OF38";;;;"2A33 (Krasnopol)";;
+"LAV25_IFV";;;;"LAV-25";;
+"Mi8K";;;;Mi-8K [ARTY OBS];;
+T62ASLT;;;;"T-62M [Assault Gun]";;
+"T801976";;;;T-80 Obr.1976;;
+"T801976CMD";;;;"T-80 Obr.1976 CMD";;
+"SAPE_RE";;;;"SAPERI +";;
+"SAPERPO_RE";;;;SAPERI [RPO] +;;
+"KKFAB";;;;"FAB-500 x 5";;
+"KKMTLB";;;;☄ MTLB;;
+"Bundle";;;;Bundle;;
+"REMOTEBOMB";;;;Remote Bomb;;
+"FGM148";;;;FGM-148 Javelin;;
+"HalfJav";;;;FIRE TEAM (Javelin);;
+"T64A1981";;;;T-64A Obr.1981;;
+"T64AK1981";;;;★ T-64AK;;
+"9M133";;;;9M133 Kornet;;
+"9M133HE";;;;9M133 Kornet (HE);;
+"Kornet";;;;KORNET;;
+"WFD_MOTRF";;;;WACH-RGT MOT.SCHÜTZEN;;
+"WFD_MOTCMD";;;;★ WACH-RGT MOT.SCHÜTZEN FÜH.;;
+T64A81Mob;;;;T-64A (REZERVISTY);;
+MoRpg22Mob;;;;MOT.REZERVISTY (RPG-22)
+MoMetisMob;;;;MOT.REZERVISTY (METIS);;
+MotMob;;;;MOT.REZERVISTY;;
+MotBtrMob;;;;MOT.REZERVISTY (BTR)
+MotCMDMob;;;;★ MOT.REZERVISTY KOM.;;
+MotHMGMob;;;;REZERVISTY PULEMETCHIKI;;
+SAPMobRpo;;;;REZERVISTY SAPERI (RPO);;
+BMP2Mob;;;;BMP-2 (REZERVISTY);;
+BTR80Mob;;;;BTR-80 (REZERVISTY);
+Obs2S4;;;;SPETSNAZ OBSERVER (2S4);
+Obs2S5;;;;SPETSNAZ OBSERVER (2S5);
+SPET_REF;;;;SPETSNAZ (RPG-29)
+SPET_Metis;;;;SPETSNAZ (METIS)
+SPETKornet;;;;KORNET (SPETSNAZ);;
+SPET_igla;;;;SPETSNAZ IGLA;;
+SPET_Lpd2;;;;Leopard 2A4 (Captured)
+Mle_F2_PAB;;;;FAMAS (Mle F2 PAB)
+MARINF_Gnd;;;;RIMa.-VOLTIGEUR (GRENADE);;
+MARINF_LR;;;;RIMa.-VOLTIGEUR (LRAC)
+MARINF_AP;;;;RIMa.-VOLTIGEUR (APILAS);
+MARINF_DMR;;;;RIMa.-VOLTIGEUR (DMR)
+MARINF_CMD;;;;★ CMDT RIMa.-VOLTIGEUR;
+MARINF_ECL;;;;RIMa.ECLAIREUR
+AMX10RC;;;;AMX-10 RC;;
+AMX10RCR;;;;AMX-10 RCR;;
+AMX10CMD;;;;★ AMX-10 RC SB PC;
+Obs_CAESAR;;;;OBSERVATEUR (CAESAR);
+Obs_MK7;;;;OBSERVATEUR (USS Missouri);;
+HumMinigun;;;;M1025 HUMVEE (M134);
+HUMEW;;;;M1025 (RADIATION RECON);
+RANGER_JAV;;;;RANGER (JAVELIN);;
+RANGER_FLS;;;;RANGER (FLASH);;
+RANGER_AA;;;;RANGER STINGER
+RANGER_GUS;;;;RANGER (GUSTAV)
+SNP_50CAL;;;;SNIPER (M82);;
+Obs_MQ1;;;;★ MQ-1 Designator HQ;;
+Obs_ATACMS;;;;Observer (ATACMS);
+M109PP;;;;M109A2 (COPPERHEAD);;
+HUMSupply;;;;M1038 SUPPLY
+BTR60Mob;;;;BTR-60 (MOB.)
+BTR50Mob;;;;BTR-50 (MOB.)
+SPW152Mob;;;;SPW-152K (MOB.)
+BMP1SP1Mob;;;;BMP-1 SP1 (MOB.)
+MSTCMDMob;;;;MOT.-SCHÜTZEN FÜH. (MOB.)
+MSTBMPMob;;;;MOT.-SCHÜTZEN (MOB.)
+MSTBTRMob;;;;MOT.-SCHÜTZEN (BTR MOB.)
+MSTSMGMob;;;;Mot.-SCHÜTZEN S.MG (MOB.)
+PZJGMob;;;;PANZERJÄGER (MOB.);
+PionMobCMD;;;;PIONIER FÜH. (MOB.)
+PionMob;;;;PIONIER (MOB.)
+PionMobFlm;;;;PIONIER (FLAM MOB.)
+FgtMobDDR;;;;PALR FAGOT (MOB.);;
+SpgMobDDR;;;;SPG-9 (MOB.);
+PkmMobDDR;;;;PKM 7,62mm (MOB.)
+NSVMobDDR;;;;NSV 12,7mm (MOB.)
+AGSMobDDR;;;;GR.-MG 30mm (MOB.)
+M43MobDDR;;;;Gr.Wfr. M43 82mm (MOB.)
+M30MobDDR;;;;M-30 122mm (MOB.)
+D20MobDDR;;;;D-20 152mm (MOB.)
+GradMobDDR;;;;BM-21 (MOB.)
+MtlbMobDDR;;;;MT-LB (MOB.)
+U469MobDDR;;;;UAZ-469 (MOB.)
+T55MobDDR1;;;;★ FÜPZ. T-55A (MOB.)
+T55MobDDR2;;;;KPZ. T-55A (MOB.)
+T55MobDDR3;;;;★ FÜPZ. T-55AM2 (MOB.)
+T55MobDDR4;;;;KPZ. T-55AM2 (MOB.);;
+T55MobDDR5;;;;KPZ. T-55AM2B (MOB.)
+D44MobDDR;;;;PaK D-44 85mm (MOB.)
+MT12MobDDR;;;;PaK MT-12 100mm (MOB.)
+UAZMobDDR1;;;;UAZ-469 FAGOT
+UAZMobDDR2;;;;UAZ-469 SPG9
+MALPMobDDR;;;;SPW-40P2 MALYUTKA-P (MOB.)
+STR2MobDDR;;;;FLA-RAK. STRELA-2M (MOB.)
+ZPU4MobDDR;;;;ZPU-4 (MOB.)
+ZU23MobDDR;;;;Flak ZU-23-2 (MOB.)
+STR1MobDDR;;;;SPW-40P2 STRELA-1 (MOB.)
+BfsMobDDR;;;;Flak Bofors (Captured)
+BRDMMobDDR;;;;SPW-40P2 (MOB.)
+PTRCMobDDR;;;;AUFKL. PT-76B (MOB.)
+T72MobDDR1;;;;★ FÜPZ. T-72M (MOB.)
+T72MobDDR2;;;;KPZ. T-72M (MOB.)
+T72MobDDR3;;;;KPZ. T-72 (MOB.)
+MotRifleCH;;;;MOT.RIFLE
+RifleCH;;;;RIFLE
+RifleCMDCH;;;;★ RIFLE CMD.
+RifleHJCH;;;;RIFLE (HJ-73B)
+EngineerCH;;;;ENGINEER
+EngCMDCH;;;;★ ENGINEER CMD.
+EngATCH;;;;ENGINEER AT
+ScoutsCH;;;;SCOUTS;
+ScoutMotCH;;;;MOT.SCOUTS;;;
+J11A_CH;;;;J-11A;
+M86_IFV;BMP1;;;ZBD-86;;
+M59_TANK;T-55;;;ZTZ-59;
+M59_TANK2;;;;★ ZTZ-59 CMD.;
+M79_TANK;;;;ZTZ-79
+T62_545;;;;T-62 No.545
+M56_1_AR;AKMN;;;TYPE 56-1
+M82_2_GRD;;;;TYPE 82-2
+M77_1_GRD;RGD-33;;;TYPE 77-1
+M85_DMR;SVD;;;TYPE 85
+M69_RPG_HE;;;;Type 84-1
+M69_RPG;RPG-7;;;TYPE 69
+M54_HMG;DshK;;;TYPE 54
+M56_5_MMG;RPK;;;TYPE 56-5
+M80_MMG;PKM;;;TYPE 80;;
+M86_MMG;PKT;;;TYPE 86;
+M59_MMG;;;;TYPE 59;;
+HJ73_ATGM;9M14;;;HJ-73A
+HJ73B_ATGM;;;;HJ-73B
+Mi17_Heli;Mi-8;;;Mi-17
+M66_Howz;D-20;;;TYPE 66
+M54_Howz;M-30;;;TYPE 54
+M59_Howz;M-46;;;TYPE 59
+M81_MLRS;BM-21;;;PHZ-81;;
+M67_Mor;PM-41;;;TYPE 67
+M55_Mor;PM-43;;;TYPE 55
+Yangtze46;M151;;;Yangtze 46
+Yt46_CMD;;;;★ Yangtze 46 CMD.
+HJ8_ATGM;;;;AFT-08;
+M74_Flam;;;;TYPE 74;
+
+RKG_3_AT;;;;FAN-3;;
+PW_78_SPG;;;;PW-78;;
+GAZ66TRAC;;;;GAZ-66 Tractor;;
+WZ305_SPAA;ZSU-57-2;;;WZ-305
+M87_AA;ZU-23-2;;;PG-87
+GAZ_M87AA;;;;GAZ-66 (PG-87)
+HN5_MANPAD;;;;HN-5B;
+FOB_CHI;;;;FOB
+RifleSupCH;;;;RIFLE (SUPPLY)
+9M55C;;;;9M55C;
+SU27SM;;;;SU27SM;
+
+;;;;///Off-Map Support;;
+OffMapSupt;;;;Off-Map Support;;
+OM_2S4;;;;2S4 Battalion;;
+OM_2S5;;;;2S5 Battalion;;
+OM_CAESAR;;;;CAESAR Battalion;
+OM_MK7;;;;USS Missouri;
+OM_B38;;;;VMF Kutuzov(68-bis);;
+OM_GBU38;;;;MQ-1 (GBU-38);
+OM_ATACMS;;;;M270 (ATACMS)
+;;;;
+;;;;///WEAPON CALIBER; ;
+Cal_58mm;;;;58mm;;
+Cal_152B38;;;;B-38 (152mm);;
+Cal_155mm;;;;155mm
+Cal_406mm;;;;16 inch MK.7 (406mm);;
+Cal_610mm;;;;24 inch (610mm)
+Cal_Grnd;;;;Grenade;
+Cal_92mm;;;;92mm
+Cal_82mm;;;;82mm
+Cal_25mm;;;;25mm
+;;;;
+;;;;///DIVISION NAMES;
+US1stMAR;;;;1ST MARINE DIVISION;;
+"US1stCAV";;;;1ST CAVALRY DIVISION;;
+"SOV34ART";;;;34-YA GV. ARTILLERIYA. DIV.;;
+"SOV9TANK";;;;9-TANK. DIV.;;
+"SOV94RIFLE";;;;94-YA GV. MOTOSTRELK. DIV.;;
+"DDR_WFD";;;;WACHREGIMENT FELIKS DZIERZYNSKI;;
+"BEL1stINF";;;;1 ÈME INFANTERIE DIVISIE;;
+SOV72RIFLE;;;;72-YA GV. MOTOSTRELK. DIV.;;
+SOV3rdGRU;;;;3-YA OTD. GV. SPETSNAZ. BRIG.;;
+FR_9BIMa;;;;9e DIVISION d'INFANTERIE de MARINE;;
+US_SOCOM;;;;10TH SPECIAL FORCE GROUP;;
+RDA_17MSD;;;;17. MOT.-SCHÜTZEN-DIVISION;;
+PLA_179Inf;;;;179TH INFANTRY DIVISION;
+SOV4TANK;;;;4-YA GV. KANTEMIROVSKAYA TANK. DIV.;;
+;;;;;;
+pbatTitle;;;;Small Building;;
+pbatInfo;;;;"-60% HE shells,Bomb,Rocket damage
+-75% AutoCannon damage
+-85% Bullet damage
+-35% Satchel Charge damage
++5.0 Stealth Bonus";;
+batInfo;;;;"-60% HE shells,Bomb,Rocket damage
+-75% AutoCannon damage
+-85% Bullet damage
+-35% Satchel Charge damage
++5.0 Stealth Bonus";;
+ruinInfo;;;;"-45% HE shells,Bomb,Rocket damage
+-60% AutoCannon damage
+-75% Bullet damage
+-20% Satchel Charge damage
++6.75 Stealth Bonus";;
+forestInfo;;;;"-30% HE shells,Bomb,Rocket damage
+-35% AutoCannon damage
+-50% Bullet damage
+-50% Satchel Charge damage
++3.5 Stealth Bonus";;
+;;;;;;;

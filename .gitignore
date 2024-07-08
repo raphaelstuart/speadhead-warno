@@ -1,0 +1,10 @@
+﻿Backup
+.base
+GameData_backup
+CommonData_backup
+Gen
+
+Warno.Tools/.idea
+.idea
+
+/.PATH.bat

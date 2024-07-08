@@ -1,0 +1,81 @@
+//A maintenir synchro avec les valeur correspondantes dans les TWeaponCapacityEnum.h
+
+TriggerType_OnShoot is 0
+TriggerType_OnHit is 3
+TriggerType_OnHitSuccess is 4
+TriggerType_OnHitFailed is 5
+TriggerType_Undefined is 6
+
+StackMethod_Undefined is 0
+StackMethod_Always is 1
+StackMethod_Never is 2
+StackMethod_OnePerSource is 3
+
+TargetType_Undefined is 0
+TargetType_Shooter is 1
+TargetType_Target is 2
+TargetType_Aoe is 3
+TargetType_SplashedUnits is 1
+
+WeaponCapacityTargetFilter_not_transported is False
+WeaponCapacityTargetFilter_transported is True
+WeaponCapacityTargetFilter_visible is True
+WeaponCapacityTargetFilter_invisible is False
+WeaponCapacityTargetFilter_in_building is True
+WeaponCapacityTargetFilter_not_in_building is False
+
+// Target filters
+WeaponCapacityTargetFilter_Allies is TWeaponCapacityFilter_Alliance
+(
+    RelationTypeValid = ~/AllianceRelation/allie
+)
+//
+WeaponCapacityTargetFilter_Enemies is TWeaponCapacityFilter_Alliance
+(
+    RelationTypeValid = ~/AllianceRelation/ennemi
+)
+//
+WeaponCapacityTargetFilter_ShooterTeam is TWeaponCapacityFilter_Alliance
+(
+    RelationTypeValid = ~/AllianceRelation/joueur
+)
+//
+WeaponCapacityTargetFilter_Neutrals is TWeaponCapacityFilter_Alliance
+(
+    RelationTypeValid = ~/AllianceRelation/neutre
+)
+//
+WeaponCapacityTargetFilter_Visibles is TWeaponCapacityFilter_IsVisible
+(
+    StatusToFilter = WeaponCapacityTargetFilter_invisible
+)
+//
+WeaponCapacityTargetFilter_Invisibles is TWeaponCapacityFilter_IsVisible
+(
+    StatusToFilter = WeaponCapacityTargetFilter_visible
+)
+//
+WeaponCapacityTargetFilter_NotTransported is TWeaponCapacityFilter_Transported
+(
+    StatusToFilter = WeaponCapacityTargetFilter_transported
+)
+//
+WeaponCapacityTargetFilter_Transported is TWeaponCapacityFilter_Transported
+(
+    StatusToFilter = WeaponCapacityTargetFilter_not_transported
+)
+//
+WeaponCapacityTargetFilter_NotInBuilding is TWeaponCapacityFilter_InBuilding
+(
+    StatusToFilter = WeaponCapacityTargetFilter_in_building
+)
+//
+WeaponCapacityTargetFilter_InBuilding is TWeaponCapacityFilter_InBuilding
+(
+    StatusToFilter = WeaponCapacityTargetFilter_not_in_building
+)
+//
+// is TAbstractWeaponCapacityFilter TWeaponCapacityFilter_MatchTags
+//(
+//    Tag = ~/
+//)

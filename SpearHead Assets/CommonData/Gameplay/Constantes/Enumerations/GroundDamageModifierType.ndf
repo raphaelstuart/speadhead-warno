@@ -1,0 +1,8 @@
+// Enum TUnitKind   A maintenir synchro avec GroundDamageModifierType:: TYpe dans ModernWarfareDamageModuleDescriptor.h
+EGroundDamageModifierType is TBaseClass
+(
+    Undefined   is 0
+    Vehicle     is 1
+    Infantry    is 2
+    Length      is 3
+)

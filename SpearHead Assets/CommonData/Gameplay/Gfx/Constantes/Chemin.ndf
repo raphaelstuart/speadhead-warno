@@ -1,0 +1,37 @@
+
+//------------------------------------------------------------------------------
+//---- Constantes --------------------------------------------------------------
+
+private EndPathShapeMode_WideArrow   is 2
+private EndPathShapeMode_NarrowArrow is 1
+private EndPathShapeMode_Nothing     is 0
+
+private Standard_PathWidth           is 200  //600
+private Standard_ArrowLength         is 100  //600
+private Standard_ArrowWidth          is 200  //1200
+
+private Standard_DirectPathWidth     is 1250//1750
+private Standard_DirectArrowLength   is 2200//1750
+private Standard_DirectArrowWidth    is 3200//4000
+
+private Standard_NarrowPathWidth     is 100  //300
+private Standard_FeedbackPorteeWidth is 200
+
+//------------------------------------------------------------------------------
+//---- Textures ----------------------------------------------------------------
+
+TextureToutBlanc is TResourceTexture
+(
+    FileName = 'VirtualData:/ToutBlanc'
+    UsefulnessMask = CivMask/Common + TypeMask/Common
+)
+
+//------------------------------------------------------------------------------
+//---- Helpers -----------------------------------------------------------------
+
+private PathAndArrowSizeMultiplierHelper is TPathAndArrowSizeMultiplierHelper
+(
+    HelperVisibility        = $/GFX/Everything/HelperVisibility
+    LineSizeMultiplierParam = $/M3D/Shader/uniLineSizeMultiplierParam.Value
+)
+

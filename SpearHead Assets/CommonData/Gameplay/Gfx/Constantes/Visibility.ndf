@@ -1,0 +1,24 @@
+
+export DefaultRenderLayerSelector is TRenderLayerSelector(
+    RenderLayerNames = [
+        'Calque_Opaque',
+        'Calque_Opaque_Transparency',
+        'Calque_Opaque_Emissive',
+        'Calque_Opaque_Depiction',
+        'Calque_Opaque_Depiction_SelectionMask',
+        'Calque_Opaque_Spotted'
+    ]
+)
+
+export HelperVisibility is THelperVisibility
+(
+    Camera    = $/M3D/Camera/CameraPrincipale
+    World     = $/M3D/Scene/DefaultWorld
+    RangeList = $/GFX/Visibility/AllRanges
+)
+
+export HelperVisibilitySaveLoadHelper is THelperVisibilitySaveLoadHelper
+(
+    Visibility = HelperVisibility
+)
+

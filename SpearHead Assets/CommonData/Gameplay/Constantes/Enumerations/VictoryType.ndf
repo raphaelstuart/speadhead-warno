@@ -1,0 +1,12 @@
+// Enum TModernWarfareVictoryType // a maintenir synchro avec EugIA_ModernWarfare/EnumVictoryType.h
+template EVictoryTypeMW [] is TBaseClass
+(
+    TotalDefeat     is 0
+    MajorDefeat     is 1
+    MinorDefeat     is 2
+    Draw            is 3
+    MinorVictory    is 4
+    MajorVictory    is 5
+    TotalVictory    is 6
+    NotSpecified    is 7
+)

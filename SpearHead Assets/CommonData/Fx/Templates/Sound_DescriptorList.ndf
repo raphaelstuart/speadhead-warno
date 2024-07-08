@@ -1,0 +1,14 @@
+export template Template_SoundDescriptorList
+[
+    PlayInRandomOrder   : boolean = false,
+    Items : LIST<TSoundDescriptor> = []
+] is TSoundDescriptorList
+meta(
+    FriendlyName    = "Sound Descriptor List",
+    DocString       = "Liste de SoundDescriptors.",
+    Family          = "Sound"
+)
+(
+    PlayInRandomOrder = <PlayInRandomOrder>
+    Items = <Items>
+)

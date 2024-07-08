@@ -1,0 +1,12 @@
+// Enum TWeaponPriority::Type  // a maintenir synchro avec EnumWeaponType.h
+EWeaponType is TBaseClass
+(
+    Other is 0
+    AP is 1
+    AP_EfficiencyDependsOnRange is 2
+    AP_EfficiencyDependsOnRange_Far is 3
+    AP_Missile is 4
+    HE is 5
+    HE_Missile is 6
+    HE_AnyArtilleryButGrenade is 7
+)

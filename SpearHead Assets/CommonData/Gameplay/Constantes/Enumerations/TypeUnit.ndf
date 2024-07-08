@@ -1,0 +1,42 @@
+// Enum TTypeUnit
+ETypeUnit is TBaseClass
+(
+    Undef         is 0
+    SupplyDep     is 1
+    MBT           is 2
+    MBTProto      is 3
+    CavTank       is 4
+    CavTnkpro     is 5
+    Tdpro         is 6
+    ArmoReco      is 7
+    Recon         is 8
+    Reconpro      is 9
+    APC           is 10
+    Aavehicl      is 11
+    Atvehicl      is 12
+    Vehicle       is 13
+    Command       is 14
+    Supply        is 15
+    InfAT         is 16
+    InfAA         is 17
+    Inf           is 18
+    InfReco       is 19
+    infEngi       is 20
+    SpecOp        is 21
+    ArtHowit      is 22
+    MLRS          is 23
+    Flamethr      is 24
+    Support       is 25
+    MortarUni     is 26
+    GUN_ship      is 27
+    GUN_CAS       is 28
+    GUN_AAsh      is 29
+    ATG_AAhe      is 30
+    ATGMheli      is 31
+    RECOheli      is 32
+    TranspHeli    is 33
+    SupplyHeli    is 34
+    ComaHeli      is 35
+    Smoke         is 36
+    Fire          is 37
+)

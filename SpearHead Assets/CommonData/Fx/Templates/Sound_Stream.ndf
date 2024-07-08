@@ -1,0 +1,12 @@
+export template Template_SoundStream
+[
+    SoundFileName   : TFileName[Sound] = ''
+] is TSoundStream
+meta(
+    FriendlyName    = "Sound Stream",
+    DocString       = "Représente un fichier son.",
+    Family          = "Sound"
+)
+(
+    FileName = <SoundFileName>
+)

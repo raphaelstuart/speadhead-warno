@@ -1,0 +1,30 @@
+// Garder synchro avec Engine\Code\Eugen\CPP\EugIA_Common\TerrainsQueryContext.h
+ETerrainsQueryContext is TBaseClass
+(
+    UnknownContext                      is 0
+    TerrainLayerQuery                   is 1
+    FogOfWarQuery                       is 2
+    VisionType0Query                    is 3
+    VisionType1Query                    is 4
+    VehicleObstaclesQuery               is 5
+    VehicleObstaclesLayer0Query         is 6
+    VehicleObstaclesLayer1Query         is 7
+    AmphibianVehicleObstaclesQuery      is 8
+    InfantryObstaclesQuery              is 9
+    InfantryObstaclesLayer0Query        is 10
+    InfantryObstaclesLayer1Query        is 11
+    HelicoObstaclesQuery                is 12
+    SpeedModifierTypeLayer0Query        is 13
+    SpeedModifierTypeLayer1Query        is 14
+    BoatObstaclesQuery                  is 15
+    BeachAsObstacleQuery                is 16
+    LittoralAsObstacleQuery             is 17
+    AmphibiousInfantryObstaclesQuery    is 18
+)
+
+// Et Engine\Code\Eugen\CPP\EugGame\TerrainZones.h
+EBuildLayerInformation is TBaseClass
+(
+    WithLayerInfos      is 0
+    WithoutLayerInfos   is 1
+)

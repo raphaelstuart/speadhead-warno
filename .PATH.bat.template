@@ -1,0 +1,3 @@
+#Set your game mod folder path and then copy and rename to .PATH.bat
+set WNPATH=X:\SteamLibrary\steamapps\common\WARNO\Mods
+set SDPATH=X:\SteamLibrary\steamapps\common\Steel Division 2\Mods

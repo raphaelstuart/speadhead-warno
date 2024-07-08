@@ -1,0 +1,18 @@
+//A maintenir synchro avec EnumAllegiance.h
+template EAllegianceCommon
+[
+]
+is TBaseClass
+(
+    NotInitialized  is 0
+    Neutral         is 1
+    AlliedWithAll   is 2
+    EnemyWithAll    is 3
+    StartSpecificValue is 4
+)
+
+template EAllegianceModernWarfare [] is EAllegianceCommon
+(
+    Otan    is StartSpecificValue
+    Pacte   is StartSpecificValue + 1
+)

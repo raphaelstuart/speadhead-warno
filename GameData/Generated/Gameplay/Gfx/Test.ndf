@@ -1,0 +1,95 @@
+Ammo_RocketArt_M21OF_122mm_napalm is TAmmunitionDescriptor
+(
+    DescriptorId                      = GUID:{c53574d4-eafe-4b94-9bdc-84ca8cb2c678}
+    Name                              = 'HJMNSPKKCT'
+    TypeCategoryName                  = 'LTMWHXRDRX'
+    Caliber                           = 'BZLFXSXAFE'
+    WeaponDescriptionToken            = ''
+    TraitsToken                       = [ 'STAT', 'napalm', 'IND', ]
+    WeaponCursorType                  = Weapon_Cursor_CorrectedArtillery
+    MinMaxCategory                    = MinMax_MLRS
+    Arme                              = TDamageTypeRTTI(Family=DamageFamily_he Index=1)
+    ProjectileType                    = EProjectileType/Artillerie
+    ImpactHappening                   = [ 'Roquette110Mm130MmNapalm' ]
+    FxPower                           = EFXPower/Moyen
+    TempsEntreDeuxTirs                = 0.3
+    TempsEntreDeuxFx                  = 0.3
+    PorteeMaximale                    = ((49950) * Metre)
+    PorteeMinimaleTBA                 = ((0) * Metre)
+    PorteeMaximaleTBA                 = ((0) * Metre)
+    PorteeMinimaleHA                  = ((0) * Metre)
+    PorteeMaximaleHA                  = ((0) * Metre)
+    PorteeMinimale                    = ((10000) * Metre)
+    AltitudeAPorteeMinimale           = ((750.0) * Metre)
+    AltitudeAPorteeMaximale           = ((10000.0) * Metre)
+    AffecteParNombre                  = False
+    AngleDispersion                   = 0.0
+    DispersionAtMaxRange              = ((1575) * Metre)
+    DispersionAtMinRange              = ((1575) * Metre)
+    DispersionWithoutSorting          = True
+    CorrectedShotAimtimeMultiplier    = 1.0
+    RadiusSplashPhysicalDamages       = 320 * Metre
+    PhysicalDamages                   = 2.44
+    ShowDamageInUI                    = True
+    RadiusSplashSuppressDamages       = 384 * Metre
+    SuppressDamages                   = 244
+    AllowSuppressDamageWhenNoImpact                = True
+    DisplaySalveAccuracy              = True
+    IsSubAmmunition                   = True
+    ForceHitTopArmor                  = True
+    TirIndirect                       = True
+    TirReflexe                        = False
+    InterdireTirReflexe               = False
+    MaximalSpeed                      = 0.0
+    MaxAcceleration                   = 0.0
+    ShotWithoutPhysics                = False
+    FluidFriction                     = 0.0
+    NoiseDissimulationMalus           = 2.5
+    ShotsBeforeMaxNoise               = 3
+    TargetOnlyOneUnitInDistrict       = False
+    HitRollRuleDescriptor = TDiceHitRollRuleDescriptor
+    (
+         DescriptorId          = GUID:{0999dbe4-376c-4490-8b83-eaed59ec9cc5}
+         BaseCriticModifier = 25
+         BaseEffectModifier = 0
+         BaseHitValueModifiers =
+         [
+             (EBaseHitValueModifier/Base, 0.0),
+             (EBaseHitValueModifier/Idling, 0),
+             (EBaseHitValueModifier/Moving, 0),
+             (EBaseHitValueModifier/Targeted, 0.0),
+         ]
+         HitModifierList       =
+         [
+             EDiceHitModifier/Precision,
+             EDiceHitModifier/DistanceToTarget,
+             EDiceHitModifier/SuccesiveShots,
+             EDiceHitModifier/Suppress,
+         ]
+    )
+    MaxSuccessiveHitCount             = 1
+    TempsDeVisee                      = 20.0
+    TempsEntreDeuxSalves              = 180.0
+    TempsEntreDeuxSalves_Min           = -1.0
+    TempsEntreDeuxSalves_Max           = -1.0
+    NbTirParSalves                    = 40
+    SupplyCost                        = 800
+    NbSalvosShootOnPosition           = 1
+    CanShootOnPosition                = True
+    CanShootWhileMoving               = False
+    NbrProjectilesSimultanes          = 1
+    AffichageMunitionParSalve         = 40
+    InterfaceWeaponTexture            = "Texture_Interface_Weapon_m21of"
+    SmokeDescriptor                   = nil
+    FireDescriptor                    = $/GFX/Weapon/Descriptor_Fire_NapalmMoyen
+    FireTriggeringProbability         = 1.0
+    TargetUnitCenter                  = True
+    IgnoreInflammabilityConditions    = True
+    CanHarmAirplanes                  = True
+    IsHarmlessForAllies               = False
+    PiercingWeapon                    = False
+    TandemCharge                      = False
+    FlightTimeForSpeed                    = 35.0
+    DistanceForSpeed                      = 100000.0 * Metre
+    DamageTypeEvolutionOverRangeDescriptor  = nil
+)

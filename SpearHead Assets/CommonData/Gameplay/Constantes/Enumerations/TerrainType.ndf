@@ -1,0 +1,40 @@
+//utf-huité
+// TerrainType // A maintenir synchro avec EugIA_Common\MaskSparseDB.h
+template CommonTerrainType [] is TBaseClass
+(
+    None                is 0x00000000
+    Default             is 0x00000001
+    Tous                is 0xFFFFFFFF //Non reporté dans EugIA_Common\MaskSparseDB.h, car c'est un masque et non pas un type de terrain
+
+    Eau                 is 0x00000002
+    EauProfonde         is 0x00000004
+    Portail             is 0x00000008
+    Passant1            is 0x00000010
+    Bloqueur0           is 0x00000020
+    Bloqueur1           is 0x00000040
+    Marais              is 0x00000080
+    Batiment            is 0x00000100
+    ForetLegere         is 0x00000200
+    ForetDense          is 0x00000400
+
+    Rocher              is 0x00000800
+    RocherForet         is 0x00001000
+    BocageLeger         is 0x00002000
+    ChampDeMineAP       is 0x00004000
+    BocageLourd         is 0x00008000
+    MineAlliance0       is 0x00010000
+    AllianceSpecificMine is MineAlliance0 //Hack: meme valeur que MineAlliance0, settee a l'initialisation a MineAlliance0 ou MineAlliance1 selon l'alliance
+    ChampCereales       is 0x00020000
+    MineAlliance1       is 0x00040000
+    LightSmoke          is 0x00080000
+    MediumSmoke         is 0x00100000
+    HeavySmoke          is 0x00200000
+
+    Batiment_floor1     is 0x01000000
+    TerrainLayer0       is 0x10000000
+    TerrainLayer1       is 0x20000000
+    TerrainLayer2       is 0x40000000
+    TerrainLayer3       is 0x80000000
+    TerrainLayer4       is 0x00400000
+    TerrainLayer5       is 0x00800000
+)

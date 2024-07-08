@@ -1,0 +1,7 @@
+// TAutoRevealType // A maintenir synchro avec WeaponSystem/RangeSetting.h
+ERangeShapeType is TBaseClass
+(
+    Sphere      is 0
+    Circle      is 1
+    Cylinder    is 2
+)

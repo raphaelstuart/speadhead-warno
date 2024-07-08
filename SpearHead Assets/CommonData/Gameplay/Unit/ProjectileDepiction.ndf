@@ -1,0 +1,338 @@
+//---------------------------------------------------------------------------------------------------------------
+//TRAJECTORE RECTILIGNE #tempo
+export template Template_DescriptorProjectile_Rectiligne
+[
+  Power = 5.0,
+  ProjectileModelFile,
+  FxFiring = nil,
+  FxFflying = nil,
+  FxExplode = nil
+] is TTimelyReceiverFactoryCarrier
+(
+    DepictionTemplate = TDepictionTemplate
+    (
+        RenderStyleProviderDescriptor = ~/DefaultRenderStyleProvider
+        Selector = OnlyHighDepictionSelector
+        DepictionAlternatives = [
+            DepictionDescriptor_LOD_High(
+                MeshDescriptor =
+                    TResourceMultiMaterialMesh
+                    (
+                        FileName = <ProjectileModelFile>
+                        UsefulnessMask = CivMask/Common + TypeMask/Common
+                    )
+            ),
+        ]
+        Actions =
+        (
+            <FxFflying> == nil ? MAP[]
+            : MAP
+            [
+                ( ['fx_propulsion_on'],  // TODO WEAPON : changer ça
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionDescriptorLaunchEffetOnSousMobile
+                        (
+                            SousMobile = 'fx_fumee_missile'  // TODO WEAPON : changer ça
+                            EffetToLaunch = TActionCall( Action = <FxFflying>)
+                        )
+                        VisibilityDependency = 2
+                    )
+                ),
+            ]
+        )
+        +
+        (
+            <FxFiring> == nil ? MAP[]
+            : MAP[
+                (
+                    ['fx_fire'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionCall
+                        (
+                            Action = <FxFiring>
+                            LocalVariables =
+                            [
+                                parPower is TPinnableValue(ExpectedType: float InitialValue = <Power>),
+                                parShotOnGround is TPinnableValue(ExpectedType: bool InitialValue = False),
+                                parShotCount is TPinnableValue(ExpectedType: int InitialValue = 1),
+                                parWaitBetweenShot is TPinnableValue(ExpectedType: float InitialValue = 0),
+                                parTerrain is TPinnableValue(ExpectedType: int InitialValue = 0),
+                            ]
+                            NamedParams = MAP
+                            [
+                                ('parPower', parPower),
+                                ('parShotOnGround', parShotOnGround),
+                                ('parShotCount', parShotCount),
+                                ('parWaitBetweenShot', parWaitBetweenShot),
+                                ('parTerrain', parTerrain)
+                            ]
+                        )
+                        VisibilityDependency = 1
+                    )
+                )
+            ]
+        )
+        +
+        (
+            <FxExplode> == nil ? MAP[]
+            : MAP[
+                (
+                    ['fx_explosion'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionCall
+                        (
+                            Action = <FxExplode>
+                            LocalVariables =
+                            [
+                                parPower is TPinnableValue(ExpectedType: float InitialValue = <Power>),
+                                parShotOnGround is TPinnableValue(ExpectedType: bool InitialValue = False),
+                                parShotCount is TPinnableValue(ExpectedType: int InitialValue = 1),
+                                parWaitBetweenShot is TPinnableValue(ExpectedType: float InitialValue = 1.0),
+                                parTerrain is TPinnableValue(ExpectedType: int InitialValue = 0),
+
+                                parDirection is TPinnableValue( ExpectedType: float3 InitialValue = float3[0,0,0] ),
+                                parPosition is TPinnableValue( ExpectedType: float3 InitialValue = float3[0,0,0] ),
+                                parRadiusPhysical is TPinnableValue( ExpectedType: float InitialValue = 0 ),
+                                parRadiusSuppress is TPinnableValue( ExpectedType: float InitialValue = 0 ),
+                                parGroundImpactRadius is TPinnableValue( ExpectedType = 'float' InitialValue = 1000 ),
+                            ]
+                            NamedParams = MAP
+                            [
+                                ('parPower', parPower),
+                                ('parTerrain', parTerrain),
+                                ('parDirection', parDirection),
+                                ('parPosition', parPosition),
+                                ('parRadiusPhysical', parRadiusPhysical),
+                                ('parRadiusSuppress', parRadiusSuppress),
+                                ('parGroundImpactRadius', parGroundImpactRadius),
+                            ]
+                        )
+                        VisibilityDependency = 1
+                    )
+                )
+            ]
+        )
+    )
+)
+//---------------------------------------------------------------------------------------------------------------
+//TRAJECTOIRE PARABOLIQUE
+export template Template_DescriptorProjectile_Parabolique
+[
+  Power = 5.0,
+  ProjectileModelFile,
+  FxFiring = nil,
+  FxFflying = nil,
+  FxExplode = nil
+] is TTimelyReceiverFactoryCarrier
+(
+    DepictionTemplate = TDepictionTemplate
+    (
+        RenderStyleProviderDescriptor = ~/DefaultRenderStyleProvider
+        Selector = OnlyHighDepictionSelector
+        DepictionAlternatives = [
+            DepictionDescriptor_LOD_High(
+                MeshDescriptor =
+                    TResourceMultiMaterialMesh
+                    (
+                        FileName = <ProjectileModelFile>
+                        UsefulnessMask = CivMask/Common + TypeMask/Common
+                    )
+            ),
+        ]
+        Actions =
+        (
+            <FxFflying> == nil ? MAP[]
+            : MAP
+            [
+                ( ['fx_propulsion_on'],  // TODO WEAPON : changer ça
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionDescriptorLaunchEffetOnSousMobile
+                        (
+                            SousMobile = 'fx_fumee_missile'  // TODO WEAPON : changer ça
+                            EffetToLaunch = TActionCall( Action = <FxFflying>)
+                        )
+                        VisibilityDependency = 2
+                    )
+                ),
+            ]
+        )
+        +
+        (
+            <FxFiring> == nil ? MAP[]
+            : MAP[
+                (
+                    ['fx_fire'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionCall
+                        (
+                            Action = <FxFiring>
+                            LocalVariables =
+                            [
+                                parPower is TPinnableValue(ExpectedType: float InitialValue = <Power>),
+                                parShotOnGround is TPinnableValue(ExpectedType: bool InitialValue = False),
+                                parShotCount is TPinnableValue(ExpectedType: int InitialValue = 1),
+                                parWaitBetweenShot is TPinnableValue(ExpectedType: float InitialValue = 1.0),
+                                parTerrain is TPinnableValue(ExpectedType: int InitialValue = 0),
+                                parDirection is TPinnableValue( ExpectedType: float3 InitialValue = float3[0,0,0] ),
+                                parPosition is TPinnableValue( ExpectedType: float3 InitialValue = float3[0,0,0] ),
+                            ]
+                            NamedParams = MAP
+                            [
+                                ('parPower', parPower),
+                                ('parShotOnGround', parShotOnGround),
+                                ('parShotCount', parShotCount),
+                                ('parWaitBetweenShot', parWaitBetweenShot),
+                                ('parTerrain', parTerrain),
+                                ('parPosition', parPosition),
+                            ]
+                        )
+                        VisibilityDependency = 1
+                    )
+                )
+            ]
+        )
+        +
+        (
+            <FxExplode> == nil ? MAP[]
+            : MAP[
+                (
+                    ['fx_explosion'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionCall
+                        (
+                            Action = <FxExplode>
+                            LocalVariables =
+                            [
+                                parPower is TPinnableValue(ExpectedType: float InitialValue = <Power>),
+                                parShotOnGround is TPinnableValue(ExpectedType: bool InitialValue = False),
+                                parShotCount is TPinnableValue(ExpectedType: int InitialValue = 1),
+                                parWaitBetweenShot is TPinnableValue(ExpectedType: float InitialValue = 1.0),
+                                parTerrain is TPinnableValue(ExpectedType: int InitialValue = 0),
+                                parDirection is TPinnableValue( ExpectedType: float3 InitialValue = float3[0,0,0] ),
+                                parPosition is TPinnableValue( ExpectedType: float3 InitialValue = float3[0,0,0] ),
+                                parRadiusPhysical is TPinnableValue( ExpectedType: float InitialValue = 0 ),
+                                parRadiusSuppress is TPinnableValue( ExpectedType: float InitialValue = 0 ),
+                                parGroundImpactRadius is TPinnableValue( ExpectedType: float InitialValue = 1000 ),
+                            ]
+                            NamedParams = MAP
+                            [
+                                ('parPower', parPower),
+                                ('parTerrain', parTerrain),
+                                ('parDirection', parDirection),
+                                ('parPosition', parPosition),
+                                ('parRadiusPhysical', parRadiusPhysical),
+                                ('parRadiusSuppress', parRadiusSuppress),
+                                ('parGroundImpactRadius', parGroundImpactRadius),
+                            ]
+                        )
+                        VisibilityDependency = 1
+                    )
+                )
+            ]
+        )
+    )
+)
+//---------------------------------------------------------------------------------------------------------------
+// MISSILES
+export template Template_DescriptorProjectile_Missile
+[
+  Power = 5.0,
+  ProjectileModelFile,
+  FxOnStart = nil,
+  FxPropulsionOn = nil,
+  FxPropulsionOff = nil,
+  FxFiring = nil
+] is TTimelyReceiverFactoryCarrier
+(
+    DepictionTemplate = TDepictionTemplate
+    (
+        RenderStyleProviderDescriptor = ~/DefaultRenderStyleProvider
+        Selector = OnlyHighDepictionSelector
+        DepictionAlternatives = [
+            DepictionDescriptor_LOD_High(
+                MeshDescriptor =
+                    TResourceMultiMaterialMesh
+                    (
+                        FileName = <ProjectileModelFile>
+                        UsefulnessMask = CivMask/Common + TypeMask/Common
+                    )
+            ),
+        ]
+        Actions =
+        (
+            <FxPropulsionOn> == nil ? MAP[]
+            : MAP
+            [
+
+                ( ['fx_propulsion_on'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionDescriptorLaunchEffetOnSousMobile
+                        (
+                            SousMobile = 'FX_Fumee_Missile'
+                            EffetToLaunch = TActionCall( Action = <FxPropulsionOn> )
+                        )
+                        VisibilityDependency = 2
+                    )
+                ),
+            ]
+        )
+        +
+        (
+            <FxPropulsionOff> == nil ? MAP[]
+            : MAP
+            [
+                ( ['fx_propulsion_off'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionDescriptorLaunchEffetOnSousMobile
+                        (
+                            SousMobile = 'FX_Fumee_Missile'
+                            EffetToLaunch = TActionCall( Action = <FxPropulsionOff> )
+                        )
+                        VisibilityDependency = 2
+                    )
+                ),
+            ]
+        )
+        +
+        (
+            <FxFiring> == nil ? MAP[]
+            : MAP[
+                (
+                    ['fx_fire'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionCall
+                        (
+                            Action = <FxFiring>
+                            LocalVariables =
+                            [
+                                parPower is TPinnableValue(ExpectedType: float InitialValue = <Power>),
+                                parShotOnGround is TPinnableValue(ExpectedType: bool InitialValue = False),
+                                parShotCount is TPinnableValue(ExpectedType: int InitialValue = 1),
+                                parWaitBetweenShot is TPinnableValue(ExpectedType: float InitialValue = 1.0),
+                                parTerrain is TPinnableValue(ExpectedType: int InitialValue = 0),
+                            ]
+                            NamedParams = MAP
+                            [
+                                ('parPower', parPower),
+                                ('parShotOnGround', parShotOnGround),
+                                ('parShotCount', parShotCount),
+                                ('parWaitBetweenShot', parWaitBetweenShot),
+                                ('parTerrain', parTerrain)
+                            ]
+                        )
+                        VisibilityDependency = 1
+                    )
+                )
+            ]
+        )
+    )
+)

@@ -1,0 +1,97 @@
+export template Template_DescriptorMissile
+[
+  Power = 5.0,
+  ImpactPower = 5.0,
+  Speed = 1000,
+  ProjectileModelFile,
+  FxPropulsionOn = nil,
+  FxPropulsionOff = nil,
+  FxFiring = nil
+] is TTimelyReceiverFactoryCarrier
+(
+    DepictionTemplate = TDepictionTemplate
+    (
+        RenderStyleProviderDescriptor = ~/DefaultRenderStyleProvider
+        Selector = OnlyHighDepictionSelector
+        DepictionAlternatives = [
+            DepictionDescriptor_LOD_High(
+                MeshDescriptor =
+                    TResourceMultiMaterialMesh
+                    (
+                        FileName = <ProjectileModelFile>
+                        UsefulnessMask = CivMask/Common + TypeMask/Common
+                    )
+            ),
+        ]
+        Actions =
+        (
+            <FxPropulsionOn> == nil ? MAP[]
+            : MAP
+            [
+
+                ( ['fx_propulsion_on'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionDescriptorLaunchEffetOnSousMobile
+                        (
+                            SousMobile = 'FX_Fumee_Missile'
+                            EffetToLaunch = TActionCall( Action = <FxPropulsionOn> )
+                        )
+                        VisibilityDependency = 2
+                    )
+                ),
+            ]
+        )
+        +
+        (
+            <FxPropulsionOff> == nil ? MAP[]
+            : MAP
+            [
+                ( ['fx_propulsion_off'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionDescriptorLaunchEffetOnSousMobile
+                        (
+                            SousMobile = 'FX_Fumee_Missile'
+                            EffetToLaunch = TActionCall( Action = <FxPropulsionOff> )
+                        )
+                        VisibilityDependency = 2
+                    )
+                ),
+            ]
+        )
+        +
+        (
+            <FxFiring> == nil ? MAP[]
+            : MAP[
+                (
+                    ['fx_fire'],
+                    TSequencingActionHappening
+                    (
+                        ActionDescriptor = TActionCall
+                        (
+                            Action = <FxFiring>
+                            LocalVariables =
+                            [
+                                parPower is TPinnableValue(ExpectedType: float InitialValue = <Power>),
+                                parShotOnGround is TPinnableValue(ExpectedType: bool InitialValue = False),
+                                parShotCount is TPinnableValue(ExpectedType: int InitialValue = 1),
+                                parWaitBetweenShot is TPinnableValue(ExpectedType: float InitialValue = 1.0),
+                                parTerrain is TPinnableValue(ExpectedType: int InitialValue = 0),
+                            ]
+                            NamedParams = MAP
+                            [
+                                ('parPower', parPower),
+                                ('parShotOnGround', parShotOnGround),
+                                ('parShotCount', parShotCount),
+                                ('parWaitBetweenShot', parWaitBetweenShot),
+                                ('parTerrain', parTerrain)
+                            ]
+                        )
+                        VisibilityDependency = 1
+                    )
+                )
+            ]
+        )
+    )
+)

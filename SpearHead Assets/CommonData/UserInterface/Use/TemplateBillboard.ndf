@@ -1,0 +1,25 @@
+
+template TemplateFeedbackRenderBillboard [
+    FileName    : string,
+    AlwaysOnTop : bool  = true,
+    ZOrder      : int   = 0,
+] is TFeedbackRenderBillboard
+(
+    Resource = TUIResourceTexture_Common(FileName = <FileName>)
+
+    ManagerProxy = $/M3D/Scene/DefaultFeedbackRenderManagerProxy
+    MeshMaterial = TMeshMaterial
+    (
+        MaterialType = (<AlwaysOnTop>
+            ? $/M3D/Shader/FeedbackRenderToolBox_Billboard/AlwaysOnTop/Name
+            : $/M3D/Shader/FeedbackRenderToolBox_Billboard/Default/Name )
+        Textures = MAP[('OARTexture0', (<FileName>, 0))]
+    )
+    RenderLayerSelector = TRenderLayerSelector
+    (
+        RenderLayerName = 'Calque_' + (<AlwaysOnTop>
+            ? $/M3D/Shader/FeedbackRenderToolBox_Billboard/AlwaysOnTop/Name
+            : $/M3D/Shader/FeedbackRenderToolBox_Billboard/Default/Name )
+        RenderLayerArrayIndex = <ZOrder>
+    )
+)

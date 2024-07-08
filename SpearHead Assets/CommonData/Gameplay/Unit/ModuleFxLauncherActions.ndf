@@ -1,0 +1,7 @@
+// Garder synchro avec ModuleFxLauncherDescriptor.h
+
+export FxAction_Fire           is 1
+export FxAction_FireAndForget  is 2
+export FxAction_Update         is 3
+export FxAction_Stop           is 4
+

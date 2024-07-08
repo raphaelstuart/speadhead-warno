@@ -1,0 +1,62 @@
+export PackAnimation_Mod is TResourceDescriptorAnimationPack
+(
+    PackName = "Pack/GfxDescriptor_Mod.apk"
+    UsefulnessMask = CivMask/MeshModding + TypeMask/All
+    LoadResourceAtRegister = true
+    FillResourceListFileNames =
+    [
+        'GFX/Everything.ndfbin',
+        'GFX/Unit.ndfbin',
+        'GFX/Weapon.ndfbin',
+    ]
+)
+export PackSkeleton_Mod is TResourceDescriptorMeshPack
+(
+    PackName = "Pack/GfxDescriptor/Skeleton_Mod.spk"
+    UsefulnessMask = CivMask/MeshModding + TypeMask/All
+    UseOnlySkeleton = true
+    UseDecompressedBufferResourceThreshold = 2
+    FillResourceListFileNames =
+    [
+        'GFX/Everything.ndfbin',
+        'GFX/Unit.ndfbin',
+        'GFX/Weapon.ndfbin',
+    ]
+    SamplingStateBoxSize = RSP_SamplingStateBoxSize
+)
+
+export PackMesh_Mod is TResourceDescriptorMeshPack
+(
+    PackName = "Pack/GfxDescriptor/Mesh_Mod.spk"
+    FillResourceListFileNames =
+    [
+        'GFX/Everything.ndfbin',
+        'GFX/Unit.ndfbin',
+        'GFX/Weapon.ndfbin',
+    ]
+    UseOnlyGeometry = true
+    UseOnlySkeleton = false
+    UsefulnessMask = CivMask/MeshModding + TypeMask/All
+    UseAlwaysDecompressedBufferResource = false
+    UseDecompressedBufferResourceThreshold = 2
+    SamplingStateBoxSize = RSP_SamplingStateBoxSize
+)
+
+export PackProxy_Mod is TResourceDescriptorProxyPack
+(
+    PackName = "Pack/GfxDescriptor/Mesh_Mod.ppk"
+    FillResourceListFileNames =
+    [
+        'GFX/Everything.ndfbin',
+        'GFX/Unit.ndfbin',
+        'GFX/Weapon.ndfbin',
+    ]
+    UsefulnessMask = CivMask/MeshModding + TypeMask/All
+)
+
+export SoundModdingPack is TResourceDescriptorSoundPack
+(
+    PackName = "Pack/SoundModding.mpk"
+    UsefulnessMask = CivMask/Modding + TypeMask/Common
+    DirectoryList = [ 'GameData:Assets/SoundModding' ]
+)

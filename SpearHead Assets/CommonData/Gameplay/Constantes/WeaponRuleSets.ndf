@@ -1,0 +1,232 @@
+// Definition des différents sets de règles permettant de sélectionner des cibles
+// Ces règles ci sont communes à tous les jeux
+// Attention à bien renseigner le niveau de sharing et le coût instinctif
+// Dites vous que le sharing coûte un lookup dans un module puis une map. Si votre truc fait
+// juste un accès contrôleur ou deux, il est probablement pas nécessaire de le partager.
+//---------------------------------------------------------------------
+// Rule Sets
+//---------------------------------------------------------------------
+
+export DefaultRuleSet is TWeaponRuleSet
+(
+    ClassNameForDebug = "Default"
+    InclusionMask = EWeaponRuleType/PriorityTargetSelection | EWeaponRuleType/ReflexTargetSelection
+    Rules =
+    [
+        ~/DangerousnessSorter,
+        ~/CurrentTargetSorter,
+        ~/DistanceSorter,
+        ~/DPSSorter,
+        ~/DPSForCurrentDistanceSorter,
+        ~/EnemyFilter,
+        ~/VisibleFilter,
+        ~/ReflexFlagsFilter,
+        ~/PriorityFlagsFilter,
+        ~/InWeaponRangeFilter,
+        ~/LineOfSightFilter,
+    ]
+)
+export DefaultAllyRuleSet is TWeaponRuleSet
+(
+    ClassNameForDebug = "Default Ally"
+    InclusionMask = EWeaponRuleType/PriorityTargetSelection | EWeaponRuleType/ReflexTargetSelection
+    Rules =
+    [
+        ~/InverseDistanceSorter,
+        ~/AllyFilter,
+        ~/InWeaponRangeFilter,
+    ]
+)
+
+export FartherIsBetterRuleSet is TWeaponRuleSet
+(
+    ClassNameForDebug = "FartherIsBetter"
+    InclusionMask = EWeaponRuleType/PriorityTargetSelection | EWeaponRuleType/ReflexTargetSelection
+    Rules =
+    [
+        ~/DangerousnessSorter,
+        ~/CurrentTargetSorter,
+        ~/InverseDistanceSorter,
+        ~/DPSSorter,
+        ~/DPSForCurrentDistanceSorter,
+        ~/EnemyFilter,
+        ~/VisibleFilter,
+        ~/ReflexFlagsFilter,
+        ~/PriorityFlagsFilter,
+        ~/InWeaponRangeFilter,
+        ~/LineOfSightFilter,
+    ]
+)
+
+export NotVisibleOnlyRuleSet is TWeaponRuleSet
+(
+    ClassNameForDebug = "NotVisible"
+    InclusionMask = EWeaponRuleType/PriorityTargetSelection | EWeaponRuleType/ReflexTargetSelection
+    Rules =
+    [
+        ~/DangerousnessSorter,
+        ~/CurrentTargetSorter,
+        ~/InverseDistanceSorter,
+        ~/DPSSorter,
+        ~/DPSForCurrentDistanceSorter,
+        ~/EnemyFilter,
+        ~/NotVisibleFilter,
+        ~/ReflexFlagsFilter,
+        ~/PriorityFlagsFilter,
+        ~/InWeaponRangeFilter,
+        ~/LineOfSightFilter,
+    ]
+)
+
+//---------------------------------------------------------------------
+// PreliminarySorters
+//---------------------------------------------------------------------
+DangerousnessSorter is TDangerousnessSorter
+(
+    ExclusionMask = 0
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+)
+
+CurrentTargetSorter is TCurrentTargetSorter
+(
+    ExclusionMask = EWeaponRuleType/PriorityTargetSelection | EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+    BonusForCurrentTarget = 100.0
+)
+
+//---------------------------------------------------------------------
+// Sorters
+//---------------------------------------------------------------------
+DistanceSorter is TDistanceSorter
+(
+    ExclusionMask = 0
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+)
+
+InverseDistanceSorter is TDistanceSorter
+(
+    ExclusionMask = 0
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+    FartherIsBetter = true
+)
+
+DPSSorter is TDPSSorter
+(
+    ExclusionMask = EWeaponRuleType/Shooting
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Heavy
+    ComputeMaxDPS = false
+    PhysicalDamage = ~/PhysicalState_sante
+)
+
+DPSForCurrentDistanceSorter is TDPSSorter
+(
+    ExclusionMask = EWeaponRuleType/Aiming | EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Heavy
+    ComputeMaxDPS = true
+    PhysicalDamage = ~/PhysicalState_sante
+)
+
+//---------------------------------------------------------------------
+// Filters
+//---------------------------------------------------------------------
+EnemyFilter is TAllianceFilter
+(
+    ExclusionMask = 0
+    // Regle ultra cheap, early cut, pas besoin de la share ca fait grossir la map pour rien et l'acces controleur est aussi cheap que l'acces cache
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/VeryLight
+    AllianceType = AllianceRelation/ennemi
+)
+AllyFilter is TAllianceFilter
+(
+    ExclusionMask = 0
+    // Regle ultra cheap, early cut, pas besoin de la share ca fait grossir la map pour rien et l'acces controleur est aussi cheap que l'acces cache
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/VeryLight
+    AllianceType = AllianceRelation/allie
+)
+
+VisibleFilter is TVisibleFilter
+(
+    ExclusionMask = EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/VeryLight
+)
+
+NotVisibleFilter is TVisibleFilter
+(
+    ExclusionMask = EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/VeryLight
+    InvertFilter = true
+)
+
+private AllFlagsFilterNeededFlags is
+[
+        Flag_Blessable,
+        Flag_Target
+]
+
+private AllFlagsFilterForbiddenFlags is
+[
+        Flag_CannotBeTargeted
+]
+
+ReflexFlagsFilter is TMatchesFlagsFilter
+(
+    ExclusionMask = EWeaponRuleType/PriorityTargetSelection
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+
+    NeededFlags = AllFlagsFilterNeededFlags + []
+    ForbiddenFlags = AllFlagsFilterForbiddenFlags +
+    [
+        Flag_CannotBeShootReflex,
+        Flag_FakeTarget
+    ]
+)
+
+PriorityFlagsFilter is TMatchesFlagsFilter
+(
+    ExclusionMask = EWeaponRuleType/ReflexTargetSelection
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+
+    NeededFlags = AllFlagsFilterNeededFlags + []
+    ForbiddenFlags = AllFlagsFilterForbiddenFlags + []
+)
+
+InWeaponRangeFilter is TInRangeFilter
+(
+    ExclusionMask = EWeaponRuleType/Aiming | EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/WeaponSharing
+    RuleCost = EWeaponRuleCost/Light
+)
+
+LineOfSightFilter is TLineOfSightFilter
+(// Expensive
+    ExclusionMask = EWeaponRuleType/Aiming | EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/UnitSharing
+    RuleCost = EWeaponRuleCost/Heavy
+)
+
+CantShootWhileMovingFilter is TCantShootWhileMovingFilter
+(
+    ExclusionMask = EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+)
+
+CantShootWhileBeingStoppedFilter is TCantShootWhileMovingFilter
+(
+    ExclusionMask = EWeaponRuleType/Theorical
+    RuleSharing = EWeaponRuleSharing/NoSharing
+    RuleCost = EWeaponRuleCost/Light
+    InvertFilter = true
+)

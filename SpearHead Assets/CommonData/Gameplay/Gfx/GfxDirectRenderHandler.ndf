@@ -1,0 +1,16 @@
+
+directRenderHandler_default is TGFxInstanceDirectRenderHandler
+(
+    Scene = $/M3D/Scene/JustAfterShadingScene // c'est uniquement pour s'enregistrer dans un listexecutor
+)
+
+directRenderHandler_StateDBWriter is TGFxInstanceDirectRenderHandler
+(
+    Scene = $/M3D/Scene/JustAfterShadingScene // c'est uniquement pour s'enregistrer dans un listexecutor
+)
+
+directRenderHandler_BillBoard is TGFxInstanceDirectRenderHandler
+(
+    Scene = $/M3D/Scene/Scene_2D_Interface // c'est uniquement pour s'enregistrer dans un listexecutor
+)
+

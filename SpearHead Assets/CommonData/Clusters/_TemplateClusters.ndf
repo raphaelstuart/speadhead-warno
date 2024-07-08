@@ -1,0 +1,687 @@
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadNDF
+[
+    Files     = [] ,
+    BaseName  : string       = '',
+    NameSpace : string       = '',
+    ModName   : string       = '',
+    ModDependencyTag : string = '',
+    PatchableFolder : string = "Patchable/",
+    FillResourceList : bool    = false,
+    AssumeNoExports = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransaction
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        FillResourceListOutputFileName = <FillResourceList> ? (<BaseName> + '.ndfbin') : ''
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : (<PatchableFolder> + <BaseName> )
+        NameSpace =<NameSpace>
+        ModName = <ModName>
+        ModDependencyTag = <ModDependencyTag>
+        AssumeNoExports = <AssumeNoExports>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterWithNDFLoadedSubCluster
+[
+    SubClusterName : string,
+    Files     = [] ,
+    BaseName  : string       = '',
+    NameSpace : string       = '',
+    PatchableFolder : string = "Patchable/",
+    FillResourceList : bool    = false,
+    AssumeNoExports = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    AllowNoSubCluster = false,
+    NeedsChecksum = false
+] is TClusterWithNDFLoadedSubCluster
+(
+    SubClusterName = <SubClusterName>
+    AllowNoSubCluster = <AllowNoSubCluster>
+    NdfTransaction = TNDFTransaction
+    (
+        BaseName        = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : (<PatchableFolder> + <BaseName> )
+        NameSpace       = <NameSpace>
+        FillResourceListOutputFileName  = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        FileList         = [TNDFTransactionFileList(Files = <Files>)]
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces  = <UsingNamespaces>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterWithNDFLoadedSubCluster_FileList
+[
+    SubClusterName : string,
+    FileList     = [] ,
+    BaseName  : string       = '',
+    NameSpace : string       = '',
+    ModName   : string       = '',
+    ModDependencyTag : string = '',
+    FillResourceList : bool    = false,
+    AssumeNoExports = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    AllowNoSubCluster = false,
+    NeedsChecksum = false
+] is TClusterWithNDFLoadedSubCluster
+(
+    SubClusterName = <SubClusterName>
+    AllowNoSubCluster = <AllowNoSubCluster>
+    NdfTransaction = TNDFTransaction
+    (
+        BaseName        = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace       = <NameSpace>
+        ModName         = <ModName>
+        ModDependencyTag = <ModDependencyTag>
+        FillResourceListOutputFileName  = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        FileList         = <FileList>
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces  = <UsingNamespaces>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryNDF
+[
+    Directory   : string       = '' ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransaction
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionDirectory
+        (
+            Directory = <Directory>
+            Recursive = <Recursive>
+        )
+        ]
+        BaseName = ((<BaseName> != '') ? (<NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )) : <BaseName>)
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryNDF_And_Files
+[
+    Directory   : string       = '' ,
+    Files     : list<string>   = [] ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    ModName   : string         = '',
+    ModDependencyTag : string  = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    DebugInfo = false,
+    NeedsChecksum = false
+] is TClusterNdfTransaction
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionDirectory
+        (
+            Directory = <Directory>
+            Recursive = <Recursive>
+        ),
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        FillResourceListOutputFileName = <FillResourceList> ? (<BaseName> + '.ndfbin') : ''
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        ModName = <ModName>
+        ModDependencyTag = <ModDependencyTag>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        DebugInfo = <DebugInfo>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadNDF_FileList
+[
+    FileList    : list<TNDFAbstractTransactionFileList>  = [] ,
+    BaseName    : string         = '',
+    NameSpace   : string         = '',
+    ModName   : string           = '',
+    ModDependencyTag : string    = '',
+    FillResourceList : bool      = false,
+    ExplicitImportedNamespaces   = [],
+    UsingNamespaces              = [],
+    NonPatchable                 = false,
+    AllowObjectsToSurvive        = false,
+    NeedsChecksum = false
+] is TClusterNdfTransaction
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList = <FileList>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        ModName = <ModName>
+        ModDependencyTag = <ModDependencyTag>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadNDFForTestsAutos
+[
+    FileList    : list<TNDFAbstractTransactionFileList>  = [] ,
+    BaseName    : string         = '',
+    NameSpace   : string         = '',
+    FillResourceList : bool      = false,
+    ExplicitImportedNamespaces   = [],
+    UsingNamespaces              = [],
+    NonPatchable                 = false,
+    AllowObjectsToSurvive        = false,
+    NeedsChecksum = false
+] is TClusterLoadNDFForTestsAutos
+(
+    Launcher = $/IA/Launcher/Launcher
+    NdfTransaction = TNDFTransaction
+    (
+        FileList = <FileList>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+template Template_ClusterLoadingFinalDependant
+[
+    SubClusterListFinal,
+    SubClusterListNoFinal,
+]
+is TClusterInitialisationWithSubClusters_FinalDependant
+(
+    SubClusterListFinal = <SubClusterListFinal>
+    SubClusterListNoFinal = <SubClusterListNoFinal>
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+
+template TemplateClusterLoadNDFForNoFinal
+       [
+       FileList     = [] ,
+       BaseName  : string       = '',
+       NameSpace : string       = '',
+       FillResourceList : bool    = false,
+       AssumeNoExports = false,
+       ExplicitImportedNamespaces = [],
+       UsingNamespaces = [],
+       NonPatchable = false,
+       AllowObjectsToSurvive = false,
+       StripPrivateRootObjects = false,
+       OnlyInWITH_EDITOR = false,
+       NeedsChecksum = false
+       ] is TClusterNdfTransactionCompilationDependent
+(
+    Final = false
+    NotFinal = true
+    WithEditor = true
+    NotWithEditor = ! <OnlyInWITH_EDITOR>
+
+    NdfTransaction = TNDFTransaction
+    (
+        FileList = <FileList>
+        BaseName = "NotFinal/" + <BaseName>
+        NameSpace =<NameSpace>
+        AssumeNoExports = <AssumeNoExports>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList> ? (<BaseName> + '.ndfbin') : ''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        StripPrivateRootObjects = <StripPrivateRootObjects>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryForNoFinal
+[
+    Directory   : string       = '' ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionCompilationDependent
+(
+    Final = false
+    NotFinal = true
+    WithEditor = true
+    NotWithEditor = true
+
+    NdfTransaction = TNDFTransaction
+    (
+        FileList = [TNDFTransactionDirectory(Directory = <Directory> Recursive = <Recursive>)]
+        BaseName = "NotFinal/" + <BaseName>
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryNDF_And_Files_ForNoFinal
+[
+    Directory   : string       = '' ,
+    Recursive : bool           = true,
+    Files     : list<string>   = [] ,
+    FileList  : list<TNDFAbstractTransactionFileList>  = [],
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionCompilationDependent
+(
+    Final = false
+    NotFinal = true
+    WithEditor = true
+    NotWithEditor = true
+
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+            TNDFTransactionDirectory
+            (
+                Directory = <Directory>
+                Recursive = <Recursive>
+            ),
+            TNDFTransactionFileList
+            (
+                Files = <Files>
+            )
+        ] + <FileList>
+
+        BaseName = "NotFinal/" + <BaseName>
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadNDFForEditor
+[
+    Files     = [] ,
+    BaseName  : string       = '',
+    NameSpace : string       = '',
+    FillResourceList : bool    = false,
+    AssumeNoExports = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionForEditor
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        BaseName = "NotFinal/" + <BaseName>
+        NameSpace =<NameSpace>
+        AssumeNoExports = <AssumeNoExports>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryForEditor
+[
+    Directory   : string       = '' ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionForEditor
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionDirectory
+        (
+            Directory = <Directory>
+            Recursive = <Recursive>
+        )
+        ]
+        BaseName = "NotFinal/" + <BaseName>
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadForNoEditor
+[
+    Files     = [] ,
+    BaseName  : string       = '',
+    NameSpace : string       = '',
+    FillResourceList : bool    = false,
+    AssumeNoExports = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionForNoEditor
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        FillResourceListOutputFileName = <FillResourceList> ? (<BaseName> + '.ndfbin') : ''
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        AssumeNoExports = <AssumeNoExports>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryForNoEditor
+[
+    Directory   : string       = '' ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    NonPatchable = false,
+    AllowObjectsToSurvive = false,
+    AssumeSourceFileListNotEmpty = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionForNoEditor
+(
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionDirectory
+        (
+            Directory = <Directory>
+            Recursive = <Recursive>
+        )
+        ]
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        AssumeSourceFileListNotEmpty = <AssumeSourceFileListNotEmpty>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryNDF_And_Files_ForEditor
+[
+    Directory   : string       = '' ,
+    Files     : list<string>   = [] ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    UsingNamespaces = [],
+    LoadItIfInGenerateAll = true,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionForEditor
+(
+    LoadItIfInGenerateAll = true
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionDirectory
+        (
+            Directory = <Directory>
+            Recursive = <Recursive>
+        ),
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        BaseName = "NotFinal/" + <BaseName>
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadDirectoryNDF_And_Files_ForNoEditor
+[
+    Directory   : string       = '' ,
+    Files     : list<string>   = [] ,
+    BaseName  : string         = '',
+    NameSpace : string         = '',
+    Recursive : bool           = true,
+    FillResourceList : bool    = false,
+    ExplicitImportedNamespaces = [],
+    NonPatchable = false,
+    UsingNamespaces = [],
+    LoadItIfInGenerateAll = true,
+    AllowObjectsToSurvive = false,
+    NeedsChecksum = false
+] is TClusterNdfTransactionForNoEditor
+(
+    LoadItIfInGenerateAll = true
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionDirectory
+        (
+            Directory = <Directory>
+            Recursive = <Recursive>
+        ),
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList>?(<BaseName> + '.ndfbin'):''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+template TemplateClusterLoadNDFCompilationDependent
+       [
+       Files     = [] ,
+       BaseName  : string       = '',
+       NameSpace : string       = '',
+       FillResourceList : bool    = false,
+       AssumeNoExports = false,
+       ExplicitImportedNamespaces = [],
+       UsingNamespaces = [],
+       NonPatchable = false,
+       AllowObjectsToSurvive = false,
+       NeedsChecksum = false
+       ] is TClusterNdfTransactionCompilationDependent
+(
+    Final = true
+    NotFinal = true
+    WithEditor = true
+    NotWithEditor = true
+
+    NdfTransaction = TNDFTransaction
+    (
+        FileList =
+        [
+        TNDFTransactionFileList
+        (
+            Files = <Files>
+        )
+        ]
+        BaseName = <NonPatchable> ? ("NonPatchable/" + <BaseName> ) : ("Patchable/" + <BaseName> )
+        NameSpace =<NameSpace>
+        AssumeNoExports = <AssumeNoExports>
+        ExplicitImportedNamespaces = <ExplicitImportedNamespaces>
+        UsingNamespaces = <UsingNamespaces>
+        FillResourceListOutputFileName = <FillResourceList> ? (<BaseName> + '.ndfbin') : ''
+        AllowObjectsToSurvive = <AllowObjectsToSurvive>
+        NeedsChecksum = <NeedsChecksum>
+    )
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+
+template TemplateClusterMapLoop
+[
+    ClusterLoadKey = MiscStrConstante/MapLoadType_Std,
+    MapIds = [],
+    AllowedMapIds = [],
+    ClustersToRun = [],
+    MapTypeMask = MapTypeMask/All,
+    MapTypeMaskOption = nil
+] is TClusterRunAllMapLoop
+(
+   AllowedMapIds = <AllowedMapIds>
+   MapIds = <MapIds>
+   MapTypeMask = <MapTypeMask>
+   MapTypeMaskOption = <MapTypeMaskOption>
+   ClusterMap = TClusterInitialisationWithSubClusters
+   (
+      SubClusterList=
+      [
+          ClusterMap is TClusterMapChooser
+          (
+            DefaultMapId = $/TestOption/DefaultMapId
+            ClusterLoadKey = <ClusterLoadKey>
+          ),
+      ]
+      +
+      <ClustersToRun>
+   )
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------
+// Profiling du temps de chargement des clusters
+template Template_ClusterLoadingTimeProfiler
+[
+    ClusterName,
+    ClusterSectionName = "Misc",
+    SubClusterList,
+    LoadingTimeContainerName = "ClusterBootstrap/LoadingTimeProfilerContainer"
+]
+is TClusterLoadingTimeProfiler
+(
+    ClusterName = <ClusterName>
+    ClusterSectionName = <ClusterSectionName>
+    SubClusterList = <SubClusterList>
+    LoadingTimeContainerName = <LoadingTimeContainerName>
+)
+//-----------------------------------------------------------------------------
+//*****************************************************************************
+//-----------------------------------------------------------------------------

@@ -1,0 +1,22 @@
+export ModelFile_BMW_325_BUL is 'GameData:Assets\3D\Units\BUL\Vehicule\BMW_325\BMW_325.Ase2NdfBin'
+
+Modele_BMW_325_BUL is TResourceMultiMaterialMeshWithLod
+(
+    FileName = ModelFile_BMW_325_BUL
+    CivMask = CivMask/Nationalite2
+    TypeMask = TypeMask/Vehicule
+)
+
+Modele_BMW_325_BUL_MID is TResourceMultiMaterialMeshWithLod
+(
+    FileName = 'GameData:Assets\3D\Units\BUL\Vehicule\BMW_325\BMW_325.Ase2NdfBin'
+    CivMask = CivMask/Nationalite2
+    TypeMask = TypeMask/Vehicule
+)
+
+Modele_BMW_325_BUL_LOW is TResourceMultiMaterialMeshWithLod
+(
+    FileName = 'GameData:Assets\3D\Units\BUL\Vehicule\BMW_325\BMW_325.Ase2NdfBin'
+    CivMask = CivMask/Nationalite2
+    TypeMask = TypeMask/Vehicule
+)

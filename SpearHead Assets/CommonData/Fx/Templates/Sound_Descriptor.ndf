@@ -1,0 +1,14 @@
+export template Template_SoundDescriptor
+[
+    SoundSettings       : TSoundSettings[GroupBy = "Settings"] = $/SoundSettings/SFX_SoundSettings,
+    TheSoundStream          : TSoundStream[GroupBy = "Stream"] = nil,
+] is TSoundDescriptor
+meta(
+    FriendlyName    = "Sound Descriptor With Settings",
+    DocString       = "Décrit les réglages avec lesquels un SoundStream est joué.",
+    Family          =   "Sound"
+)
+(
+    SoundSettings = <SoundSettings>
+    TheSoundStream = <TheSoundStream>
+)

@@ -1,0 +1,8 @@
+// Synchro avec EnumWeaponRuleCost.h
+EWeaponRuleCost is TBaseClass
+(
+    Undefined is 0
+    VeryLight is 1 // Regle ultra cheap, early cut, pas besoin de la share ca fait grossir la map pour rien et l'acces controleur est aussi cheap que l'acces cache
+    Light is 2
+    Heavy is 3 // Regle ultra chère, utilisé uniquement pour les filtres pour les faire en séquentiel à la fin
+)

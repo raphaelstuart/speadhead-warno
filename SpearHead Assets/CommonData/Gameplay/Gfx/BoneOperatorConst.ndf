@@ -1,0 +1,4 @@
+// header de definition de type d'operation sur bone operator
+export BoneOperator_Translate     is    1
+export BoneOperator_PreRotate     is    2
+export BoneOperator_PostRotate    is    4

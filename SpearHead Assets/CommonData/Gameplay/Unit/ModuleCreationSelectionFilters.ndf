@@ -1,0 +1,4 @@
+// Garder synchro avec ModuleCreationSelectionFilters.h
+
+ModuleCreationFilter_Cadavre        is 1
+ModuleCreationFilter_Ghost          is 2

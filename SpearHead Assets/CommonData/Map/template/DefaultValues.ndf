@@ -1,0 +1,99 @@
+// parametres obligatoires (on pourrait metre default values = nil)
+
+// NbCaseX                  : int,
+// NbCaseY                  : int,
+
+// MapName                  : string,
+// MapDirectory             : string,
+// LevelBuildDirectory        : string,
+// ScriptingDirectory       : string,
+// UnitLevelBuildDirectory  : string,
+// UnitLevelDesignDirectory : string,
+
+// ClearColorBaking         : float4,
+
+DefaultValues is TBaseClass
+(
+    private ThisFileShortFileNameWithoutExt is 'map'
+
+    private PNGDebugDir                 is 'Debug'
+    private MapInfoPath                 is 'MapInfo.IA'
+
+    private ProxyDirectories            is []
+
+    private ClusterDecorsSet            is $/ClusterSets/ClusterLoad_EmptyDecorsSet
+    private ConduiteADroite             is True
+    private AverageZ                    is 0
+    private MaxZForCameraHeight         is 300000.0
+    private HauteurMer                  is 0
+    private HasWater                    is true
+    private WindForFX                   is float3[100,100,50]
+    private DustColorForFX              is float3[1,1,1]
+    private DustInfluenceForFX          is 1.0
+
+    private AmbianceDecor_MultiPiste    is ''
+    private AmbianceHq_Volume           is 1.0
+    private AmbianceAir_Volume          is 1.0
+    private AmbianceDecor_Volume        is 1.0
+    private AmbianceHq_RangeMax         is 250000
+    private AmbianceHq_RangeMin         is 100000
+    private AmbianceAir_RangeMax        is 175000
+    private AmbianceAir_RangeMin        is 40000
+    private AmbianceDecor_RangeMax      is 60000
+    private AmbianceDecor_RangeMin      is 20000
+
+    private CloudMask                   is 'VirtualData:/ToutBlanc'
+    private CloudMap                    is 'VirtualData:/ToutNoirTransparent'
+    private CloudDecay                  is 5000
+    private CloudTopDecayProportion     is 0.2
+    private CloudBrightnessBoost        is 1
+    private CloudThickness              is 15000
+    private CloudHeight                 is 100000
+    private UseClouds                   is false
+
+    private WaterBorderIlluminationFactor      is 0.25
+    private WaterBorderIlluminationAttenuation is 0.5
+    private WaterBorderTexCoordDiv             is 0.5
+
+    private NeedsPathFindData is true
+
+    private DoNotRenderTerrains is false
+
+    private PseudoWaveMaxDepth          is 0.45
+    private PseudoWaveThickness         is 0.5
+    private PseudoWaveSpeed             is 0.1
+
+    private HeightMapExtention          is 'r32'
+    private TGAHeightFieldMaxHeight     is 50000
+    private R32SrcRate                  is 128
+    private R32HeightMultiplicator      is 100000
+    private R32SizeX                    is 4096
+    private R32SizeY                    is 2048
+    private PNGHeightMultiplicator      is 100000.0
+
+    private TargetNbTriangleHighDef  is 0
+    private TargetNbTriangleLowDef   is 0
+
+    // extra values
+    private SectorSize              is 163840
+    private MapDirectoryBase        is 'GameData:Map/Scenario/'
+    private DatasMapDirectoryBase   is 'DATASMAP:\Output\'
+    private VisibleAreaMargin  is 34050
+
+    private NbCaseHighPerCaseLow    is 2
+
+    private CameraMoverWithPivotInterpolateur is $/Camera/AltitudeInfoInterpolateur_CameraMoverWithPivot
+    private CameraMoverTargetInterpolateur is $/Camera/AltitudeInfoInterpolateur_CameraMoverTarget
+
+    WorldList is
+    [
+        $/M3D/Scene/DefaultWorld,
+        $/M3D/Scene/WorldImposteur,
+        $/M3D/Scene/WorldInterface,
+        $/M3D/Scene/WorldInterface2D,
+        $/M3D/Scene/WorldSticker,
+        $/M3D/Scene/World_SparseDBRTex,
+        $/M3D/Scene/World_SparseDBRTex_MiniMap,
+    ]
+
+)

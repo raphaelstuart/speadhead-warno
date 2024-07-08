@@ -1,0 +1,21 @@
+
+export RotationAxeX_180Degree is TInfoAxeRotation
+(
+    AxeRotation    = VECTOR[1, 0, 0]
+    AngleMinDegree = -180
+    AngleMaxDegree =  180
+)
+
+export RotationAxeY_180Degree is TInfoAxeRotation
+(
+    AxeRotation    = VECTOR[0, 1, 0]
+    AngleMinDegree = -180
+    AngleMaxDegree =  180
+)
+
+export RotationAxeZ_180Degree is TInfoAxeRotation
+(
+    AxeRotation    = VECTOR[0, 0, 1]
+    AngleMinDegree = -180
+    AngleMaxDegree =  180
+)

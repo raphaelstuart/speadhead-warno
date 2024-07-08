@@ -1,0 +1,9 @@
+// Enum ESoldierBattleGroupAnimations // a maintenir synchro avec EugIA_Common/EnumSoldierBattleGroupAnimation.h
+ESoldierBattleGroupAnimations is TBaseClass
+(
+    Invalid     is 0
+    Operational is 1
+    Suppressed  is 2
+    Pinned      is 3
+    Cowering    is 4
+)

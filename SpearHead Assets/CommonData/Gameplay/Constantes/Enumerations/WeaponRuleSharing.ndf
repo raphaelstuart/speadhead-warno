@@ -1,0 +1,8 @@
+// Synchro avec EnumWeaponRuleSharing.h
+EWeaponRuleSharing is TBaseClass
+(
+    NoSharing is 0
+    WeaponSharing is 1
+    AimManagerSharing is 2
+    UnitSharing is 3
+)

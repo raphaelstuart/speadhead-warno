@@ -1,0 +1,259 @@
+
+// NOTE POUR LA DEFINITION DES CHEMINS
+// L'utilisation de GrowingSpeed permet d'obtenir un grandissement constant de la fleche
+// a l'inverse de GrowingDuration donne un grandissement relatif au temps donné.
+// Dans le cas où les deux sont utilisés, GrowingSpeed est prioritaire.
+
+
+//------------------------------------------------------------------------------
+//---- Chemins Direct D'Ordre ----------------------------------------------------
+
+Template TemplateGfxCheminDirectValidationOrdrePathDescriptor
+[
+    RenderLayerName,
+] is TGfxDescriptorPath
+(
+    VisibilityRange       = $/GFX/Visibility/AllRanges/Zoom1234
+    Color                 = [107, 120, 66, 50]
+    RelatifPorteur        = false
+    PlaqueSurLeSol        = false
+    AngularPrecision      = 20
+    VertexCountPerSection = 4
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName=<RenderLayerName>)
+    Material              = $/M3D/Shader/MaterialBezierLine_BichromeNoShadow
+    Width                 = Standard_DirectPathWidth
+    ArrowLength           = Standard_DirectArrowLength
+    ArrowWidth            = Standard_DirectArrowWidth
+    Texture               = ~/TextureToutBlanc
+    FadeOffDuration       = 0
+    GrowingDuration       = 0
+    EndPathShapeMode      = EndPathShapeMode_NarrowArrow
+    SizeMultiplierHelper  = PathAndArrowSizeMultiplierHelper
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+
+    UseCurvature = true
+    CurvatureRatio =   1 //0.8//0.9//0.7
+    CurvatureCutOffRatio = 1 // 2.1 //1.75
+
+    AutoScaleArrowPathRatio = 0.33
+)
+
+GfxCheminDirectValidationOrdre_PathDescriptor is TemplateGfxCheminDirectValidationOrdrePathDescriptor
+(
+    RenderLayerName = 'Calque_Chemins'
+)
+
+GfxCheminDirectValidationOrdreAttack_PathDescriptor is TemplateGfxCheminDirectValidationOrdrePathDescriptor
+(
+    RenderLayerName = 'Calque_Chemins_Avion'
+)
+
+GfxCheminDirectValidationOrdreMoveAvion_PathDescriptor is TemplateGfxCheminDirectValidationOrdrePathDescriptor
+(
+    RenderLayerName = 'Calque_Chemins_Avion'
+)
+
+GfxCheminDirectValidationOrdreAttackAvion_PathDescriptor is TemplateGfxCheminDirectValidationOrdrePathDescriptor
+(
+    RenderLayerName = 'Calque_Chemins_Avion'
+)
+
+//------------------------------------------------------------------------------
+//---- Chemins de mouvement ----------------------------------------------------
+
+export GfxChemin is TGfxDescriptorPath
+(
+    VisibilityRange       = $/GFX/Visibility/AllRanges/Zoom1234
+    Color                 = [107, 120, 66, 50]
+    RelatifPorteur        = false
+    PlaqueSurLeSol        = true
+    AngularPrecision      = 20
+    VertexCountPerSection = 3
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName='Calque_Chemins')
+    Material              = $/M3D/Shader/MaterialBezierLine_Bichrome
+    Width                 = Standard_PathWidth
+    ArrowLength           = Standard_ArrowLength
+    ArrowWidth            = Standard_ArrowWidth
+    Texture               = ~/TextureToutBlanc
+    FadeOffDuration       = 0
+    EndPathShapeMode      = EndPathShapeMode_NarrowArrow
+    SizeMultiplierHelper  = PathAndArrowSizeMultiplierHelper
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+)
+
+export GfxCheminGhost is TGfxDescriptorPath
+(
+    VisibilityRange       = $/GFX/Visibility/AllRanges/Zoom1234
+    Color                 = [107, 120, 66, 50]
+    RelatifPorteur        = false
+    PlaqueSurLeSol        = true
+    AngularPrecision      = 20
+    VertexCountPerSection = 3
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName='Calque_Chemins')
+    Material              = $/M3D/Shader/MaterialBezierLine_Bichrome
+    Width                 = Standard_PathWidth
+    ArrowLength           = Standard_ArrowLength
+    ArrowWidth            = Standard_ArrowWidth
+    Texture               = ~/TextureToutBlanc
+    EndPathShapeMode      = EndPathShapeMode_NarrowArrow
+    SizeMultiplierHelper  = PathAndArrowSizeMultiplierHelper
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+)
+
+//------------------------------------------------------------------------------
+//---- Feedback Zone de vision/portee ------------------------------------------
+
+VisionCircle3Renderer is TVisionCircle3Renderer
+(
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName = 'Calque_VisionCircle')
+    World                 = $/M3D/Scene/DefaultWorld
+    MeshMaterial          = $/M3D/Shader/MaterialVisionCircle
+    Camera                = $/M3D/Camera/CameraPrincipale
+    WorldFloorProxy       = $/M3D/Scene/WorldFloorForIAProxy
+    MinRadiusToBeVisible  = 250
+)
+
+// Pour les portee max de vision
+export GfxCercleZoneVision is TGfxDescriptorPathZonePortee
+(
+    VisibilityRange       = $/GFX/Visibility/AllRanges/Zoom1234
+    //Color                 = D3DRGBA[60, 178, 236, 1] //[60, 178, 236, 192]
+    Color                 = D3DRGBA[255, 255, 255, 255]
+    RelatifPorteur        = false
+    AngularPrecision      = 20
+    VertexCountPerSection = 3
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName='Calque_Chemins')
+    Material              = $/M3D/Shader/MaterialBezierLine_Vision
+    Width                 = 1.8*Standard_FeedbackPorteeWidth
+    Texture               = ~/TextureToutBlanc
+    EndPathShapeMode      = EndPathShapeMode_Nothing
+    SizeMultiplierHelper  = PathAndArrowSizeMultiplierHelper
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+
+    PlaqueSurLeSol        = true      //Ne pas toucher (ou prevenir stef)
+    ZoneVision                = true  //Ne pas toucher (ou prevenir stef)
+    RayTrace                  = false //Ne pas toucher (ou prevenir stef)
+    NombrePointPrecision      = 25   // Attention impact directement sur les perfs !
+    RatioLissage          = 3
+
+    DirectionalBlipping       = False // Active le Blip
+
+    MultiplicateurWidthObstacle = 1.1 // Multiplicateur de la largeur à la recontre d'obstacle
+    MultiplicateurAlphaNoObstacle = 0.35 // Multiplicateur de l'alpha quand pas d'obstacle
+    AngleEnDegrePourFadeAlphaNoObstacle = 0.0 // Angle a partir d'un obstacle au dela duquel on considere qu'il n'y a plus d'obstacle (pour le controle de l'alpha)
+
+    ConsiderObstacles = true
+    VisionCircleRenderer = VisionCircle3Renderer
+
+    VitesseCroissance         = 100000 // Vitesse de croissance du cercle a l'ouverture
+    VitesseDecroissance       = 300000 // Vitesse de decroissance du cercle a l'ouverture
+    TempsMaxCroissance        = 750    // Limite temporelle a la croissance (peut impacter la vitesse)
+    TempsMaxDecroissance      = 500    // Limite temporelle a la decroissance (peut impacter la vitesse)
+    TempsMinCroissance        = 0      // Limite temporelle a la croissance (peut impacter la vitesse)
+    TempsMinDecroissance      = 0      // Limite temporelle a la decroissance (peut impacter la vitesse)
+
+    VitesseCroissanceAlpha    = 128    // Vitesse Pulse Croissant Alpha
+    VitesseDecroissanceAlpha  = 128    // Vitesse Pulse Decroissant Alpha
+    AlphaMax                  = 128    // ALpha max pour pulse
+    AlphaMin                  = 128     // ALpha min pour pulse
+
+    VitesseExpansionCroissanceAlpha = 130    // Vitesse expansion alpha a l'ouverture du cercle
+    VitesseExpansionDecroissanceAlpha = 400  // Vitesse expansion alpha a la fermeture du cercle
+    AlphaExpansionMax     = 128              // AlphaMax a l'expansion (fin ouverture)
+    AlphaExpansionMin     = 32               // AlphaMin a l'expansion (debut ouverture)
+)
+
+
+// Pour les portee max des artilleries
+export GfxCercleCheminPorteeMax is TGfxDescriptorPathZonePortee
+(
+    VisibilityRange       = $/GFX/Visibility/AllRanges/Zoom1234
+    //Color                 = D3DRGBA[255, 72, 0, 100]
+    Color                 = D3DRGBA[0 , 66, 255, 255]
+    RelatifPorteur        = false
+    PlaqueSurLeSol        = true
+    AngularPrecision      = 20
+    VertexCountPerSection = 3
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName='Calque_Chemins')
+    Material              = $/M3D/Shader/MaterialBezierLine_Vision
+    Width                 = 6*1.8*Standard_FeedbackPorteeWidth
+    Texture               = ~/TextureToutBlanc
+    EndPathShapeMode      = EndPathShapeMode_Nothing
+    SizeMultiplierHelper  = PathAndArrowSizeMultiplierHelper
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+
+    ZoneVision                = false
+    RayTrace                  = false
+    DirectionalBlipping       = true
+    VitesseCroissance         = 100000
+    VitesseDecroissance       = 300000
+
+    MultiplicateurWidthObstacle = 1.1
+    MultiplicateurAlphaNoObstacle = 1.0
+    AngleEnDegrePourFadeAlphaNoObstacle = 1
+    NombrePointPrecision = 15
+    RatioLissage          = 3
+
+    ConsiderObstacles = false
+    VisionCircleRenderer = VisionCircle3Renderer
+
+    TempsMaxCroissance        = 750
+    TempsMaxDecroissance      = 500
+    TempsMinCroissance        = 0
+    TempsMinDecroissance      = 0
+    VitesseCroissanceAlpha    = 128
+    VitesseDecroissanceAlpha  = 128
+    AlphaMax                  = 128
+    AlphaMin                  = 128
+    VitesseExpansionCroissanceAlpha = 130
+    VitesseExpansionDecroissanceAlpha = 400
+    AlphaExpansionMax     = 128
+    AlphaExpansionMin     = 32
+)
+
+// Pour les portee max des unite "tir direct"
+export GfxCercleCheminPorteeMaxRaytrace is TGfxDescriptorPathZonePortee
+(
+    VisibilityRange       = $/GFX/Visibility/AllRanges/Zoom1234
+    //Color                 = D3DRGBA[255, 255, 255, 255] //[255, 0, 0, 255]
+    //Color                 = D3DRGBA[74, 129, 233, 255]
+    Color                 = D3DRGBA[0 , 66, 255, 255]
+    RelatifPorteur        = false
+    PlaqueSurLeSol        = true
+    AngularPrecision      = 20
+    VertexCountPerSection = 3
+    RenderLayerSelector = TRenderLayerSelector(RenderLayerName='Calque_Chemins')
+    Material              = $/M3D/Shader/MaterialBezierLine_Vision
+    Width                 = 4*1.8*Standard_FeedbackPorteeWidth
+    Texture               = ~/TextureToutBlanc
+    EndPathShapeMode      = EndPathShapeMode_Nothing
+    SizeMultiplierHelper  = PathAndArrowSizeMultiplierHelper
+    GFxInstanceDirectRenderHandler = ~/directRenderHandler_default
+
+    MultiplicateurWidthObstacle = 1 //1.2
+    MultiplicateurAlphaNoObstacle = 1 //0.35
+    AngleEnDegrePourFadeAlphaNoObstacle = 5
+    NombrePointPrecision = 15 //25
+    RatioLissage          = 3
+
+    ConsiderObstacles = true
+    VisionCircleRenderer = VisionCircle3Renderer
+
+    ZoneVision                = false
+    RayTrace                  = true
+    DirectionalBlipping       = true
+    VitesseCroissance         = 100000 //150000
+    VitesseDecroissance       = 300000
+    TempsMaxCroissance        = 750
+    TempsMaxDecroissance      = 500
+    TempsMinCroissance        = 0
+    TempsMinDecroissance      = 0
+    VitesseCroissanceAlpha    = 128
+    VitesseDecroissanceAlpha  = 128
+    AlphaMax                  = 128
+    AlphaMin                  = 128
+    VitesseExpansionCroissanceAlpha = 130
+    VitesseExpansionDecroissanceAlpha = 400
+    AlphaExpansionMax     = 128
+    AlphaExpansionMin     = 32
+)

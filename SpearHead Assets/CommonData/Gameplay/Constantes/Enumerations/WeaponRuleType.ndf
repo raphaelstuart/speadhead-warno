@@ -1,0 +1,12 @@
+// Synchro avec EnumWeaponRuleType.h
+EWeaponRuleType is TBaseClass
+(
+    None is 0                              //0b00000000'00000000
+    PriorityTargetSelection is 1           //0b00000000'00000001
+    ReflexTargetSelection is 2             //0b00000000'00000010
+    ProjectileSelection is 4               //0b00000000'00000100
+//---------------------------------------
+    Shooting is 256                        //0b00000001'00000000
+    Aiming is 512                          //0b00000010'00000000
+    Theorical is 1024                      //0b00000100'00000000
+)

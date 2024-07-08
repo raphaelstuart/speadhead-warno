@@ -1,0 +1,96 @@
+//--------------------------------------------------------------------------
+// Ce fichier est modifié à la main
+// et contient tous les porteurs commun entre les jeux
+//--------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------
+// Interface
+//--------------------------------------------------------------------------
+// WARNING : utilisé pour la souris et pour le pad
+GfxPorteurUnderCursor is TGfxDescriptorUnderCursor
+(
+)
+
+Affichage_Info_Curseur is TemplateSimpleGfxDescriptorTexte
+(
+    VisibilityRange = $/GFX/Visibility/AllRanges/Zoom234
+    Color           = [255, 0, 0, 255]
+    FontSize        = 14
+)
+
+//--------------------------------------------------------------------------
+// Infanterie
+//--------------------------------------------------------------------------
+// Utilisé par TGroupeCombatModule
+GfxPorteurGroupHelperInfanterie is TGfxDescriptorPorteurGroupHelper
+(
+)
+
+//--------------------------------------------------------------------------
+// Unités Terrestres
+//--------------------------------------------------------------------------
+Template TemplatePorteurUniteTerrestre [ CreeSoundSlot = false, PlaqueSurLeSol = false, AlwaysTeleportASAP = false, AligneSurLeSol = false ] is TGfxDescriptorPorteur
+(
+    CreeSoundSlot      = <CreeSoundSlot>
+    PlaqueSurLeSol     = <PlaqueSurLeSol>
+    AligneSurLeSol     = <AligneSurLeSol>
+    AlwaysTeleportASAP = <AlwaysTeleportASAP>
+)
+
+GfxPorteurUniteTerrestrePlaqueSurSol is TemplatePorteurUniteTerrestre
+(
+    CreeSoundSlot = true
+)
+
+GfxPorteurUniteTerrestre is TemplatePorteurUniteTerrestre
+(
+    CreeSoundSlot = true
+    PlaqueSurLeSol = false
+)
+
+GfxPorteurUniteTerrestreInfanterie is TemplatePorteurUniteTerrestre
+(
+    CreeSoundSlot = true
+    PlaqueSurLeSol = false
+    AligneSurLeSol = false
+)
+
+GfxPorteurUniteTerrestreGhost is TemplatePorteurUniteTerrestre
+(
+    AlwaysTeleportASAP = true
+)
+
+//--------------------------------------------------------------------------
+// Unités Volantes
+//--------------------------------------------------------------------------
+Template TemplatePorteurUniteVolante [ CreeSoundSlot = false, AlwaysTeleportASAP = false ] is TGfxDescriptorPorteur
+(
+    CreeSoundSlot         = <CreeSoundSlot>
+    PlaqueSurLeSol        = false
+    AligneSurLeSol        = false
+    AlwaysTeleportASAP    = <AlwaysTeleportASAP>
+)
+
+GfxPorteurUniteVolante is TemplatePorteurUniteVolante
+(
+    CreeSoundSlot = true
+)
+
+GfxPorteurUniteVolanteGhost is TemplatePorteurUniteVolante
+(
+)
+
+//--------------------------------------------------------------------------
+// Batiments
+//--------------------------------------------------------------------------
+Template TemplatePorteurBatiment [ AlwaysTeleportASAP  = false ] is TGfxDescriptorPorteur
+(
+    CreeSoundSlot         = false
+    PlaqueSurLeSol        = true
+    AligneSurLeSol        = false
+    AlwaysTeleportASAP    = <AlwaysTeleportASAP>
+)
+
+GfxPorteurBatiment is TemplatePorteurBatiment
+(
+)
